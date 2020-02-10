@@ -1,0 +1,29 @@
+﻿@page
+@model TaskingBoss.Pages.Tasks.ListModel
+@{
+}
+
+<h1>Tasks</h1>
+
+<form method="get">
+    <div class="form-group">
+        <div class="input-group">
+            <input type="search" class="form-control" value="" />
+            <span class="input-group-append">
+                <button class="btn btn-outline-secondary" type="button">Search</button>
+            </span>
+        </div>
+
+    </div>
+</form>
+
+<table class="table">
+    @foreach (var task in Model.Tasks)
+    {
+        <tr>
+            <td>@task.Title</td>
+            <td>@task.Description</td>
+            <td>@task.Status</td>
+        </tr>
+    }
+</table>
