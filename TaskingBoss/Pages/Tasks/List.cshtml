@@ -8,9 +8,9 @@
 <form method="get">
     <div class="form-group">
         <div class="input-group">
-            <input type="search" class="form-control" value="" />
+            <input type="search" class="form-control" asp-for="SearchTerm"/>
             <span class="input-group-append">
-                <button class="btn btn-outline-secondary" type="button">Search</button>
+                <button class="btn btn-outline-secondary" type="submit">Search</button>
             </span>
         </div>
 
@@ -24,6 +24,11 @@
             <td>@task.Title</td>
             <td>@task.Description</td>
             <td>@task.Status</td>
+            <td>
+                <a class="btn btn-outline-secondary btn-sm" asp-page="./Detail" asp-route-taskId="@task.TaskId">Details</a>
+                <a class="btn btn-outline-secondary btn-sm" asp-page="./Edit" asp-route-taskId="@task.TaskId">Edit</a>
+
+            </td>
         </tr>
     }
 </table>

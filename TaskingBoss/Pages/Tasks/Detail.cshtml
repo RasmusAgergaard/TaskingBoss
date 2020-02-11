@@ -1,0 +1,14 @@
+﻿@page "{taskId:int}"
+@model TaskingBoss.DetailModel
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<h1>@Model.Task.Title</h1>
+
+<div>Id: @Model.Task.TaskId</div>
+<div>Description: @Model.Task.Description</div>
+<div>Status: @Model.Task.Status</div>
+
+<a asp-page="./List" class="btn btn-outline-secondary">All tasks</a>
+
