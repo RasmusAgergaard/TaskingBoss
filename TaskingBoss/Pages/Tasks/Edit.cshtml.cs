@@ -12,6 +12,7 @@ namespace TaskingBoss
         private readonly ITaskData _taskData;
         private readonly IHtmlHelper _htmlHelper;
 
+        [BindProperty]
         public TaskItem Task { get; set; }
         public IEnumerable<SelectListItem> Status { get; set; }
 
@@ -21,11 +22,18 @@ namespace TaskingBoss
             _htmlHelper = htmlHelper;
         }
 
-        public IActionResult OnGet(int taskId)
+        public IActionResult OnGet(int? taskId)
         {
             Status = _htmlHelper.GetEnumSelectList<TaskStatus>();
 
-            Task = _taskData.GetById(taskId);
+            if (taskId.HasValue)
+            {
+                Task = _taskData.GetById(taskId.Value);
+            }
+            else
+            {
+                Task = new TaskItem();
+            }
 
             if (Task == null)
             {
@@ -33,6 +41,29 @@ namespace TaskingBoss
             }
 
             return Page();
+        }
+
+        public IActionResult OnPost()
+        {
+            if (!ModelState.IsValid)
+            {
+                Status = _htmlHelper.GetEnumSelectList<TaskStatus>();
+                return Page();
+            }
+
+            if (Task.Id > 0)
+            {
+                _taskData.Update(Task);
+                TempData["Message"] = "Task updated!";
+            }
+            else
+            {
+                _taskData.Add(Task);
+                TempData["Message"] = "Task added!";
+            }
+
+            _taskData.Commit();
+            return RedirectToPage("./Detail", new { taskId = Task.Id });
         }
     }
 }

@@ -1,28 +1,37 @@
-﻿@page "{taskId:int}"
+﻿@page "{taskId:int?}"
 
 @model TaskingBoss.EditModel
 @{
     ViewData["Title"] = "Edit";
 }
 
-<h1>Editing task "@Model.Task.Title"</h1>
+@if (string.IsNullOrEmpty(Model.Task.Title))
+{
+    <h1>New task</h1>
+}
+else
+{
+    <h1>Editing task "@Model.Task.Title"</h1>
+}
+
 
 <form method="post">
-    <input type="hidden" asp-for="Task.TaskId" />
+    <input type="hidden" asp-for="Task.Id" />
 
     <div class="form-group">
         <label asp-for="Task.Title"></label>
         <input asp-for="Task.Title" class="form-control" />
+        <span class="text-danger" asp-validation-for="Task.Title"></span>
     </div>
     <div class="form-group">
         <label asp-for="Task.Description"></label>
         <input asp-for="Task.Description" class="form-control" />
+        <span class="text-danger" asp-validation-for="Task.Description"></span>
     </div>
     <div class="form-group">
         <label asp-for="Task.Status"></label>
-        <select class="form-control" asp-for="Task.Status" asp-items="@Model.Status">
-
-        </select>
+        <select class="form-control" asp-for="Task.Status" asp-items="@Model.Status"></select>
+        <span class="text-danger" asp-validation-for="Task.Status"></span>
     </div>
 
     <button type="submit" class="btn btn-outline-primary">Save task</button>

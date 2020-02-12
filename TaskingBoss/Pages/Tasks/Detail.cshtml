@@ -4,9 +4,16 @@
     ViewData["Title"] = "Detail";
 }
 
+@if (Model.Message != null)
+{
+    <div class="alert alert-success" role="alert">
+        @Model.Message
+    </div>
+}
+
 <h1>@Model.Task.Title</h1>
 
-<div>Id: @Model.Task.TaskId</div>
+<div>Id: @Model.Task.Id</div>
 <div>Description: @Model.Task.Description</div>
 <div>Status: @Model.Task.Status</div>
 

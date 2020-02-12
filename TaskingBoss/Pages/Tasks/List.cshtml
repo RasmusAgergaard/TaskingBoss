@@ -25,10 +25,11 @@
             <td>@task.Description</td>
             <td>@task.Status</td>
             <td>
-                <a class="btn btn-outline-secondary btn-sm" asp-page="./Detail" asp-route-taskId="@task.TaskId">Details</a>
-                <a class="btn btn-outline-secondary btn-sm" asp-page="./Edit" asp-route-taskId="@task.TaskId">Edit</a>
-
+                <a class="btn btn-outline-secondary btn-sm" asp-page="./Detail" asp-route-taskId="@task.Id">Details</a>
+                <a class="btn btn-outline-secondary btn-sm" asp-page="./Edit" asp-route-taskId="@task.Id">Edit</a>
             </td>
         </tr>
     }
 </table>
+
+<a asp-page="./Edit" class="btn btn-outline-primary">Add new task</a>

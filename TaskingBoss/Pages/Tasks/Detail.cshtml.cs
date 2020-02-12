@@ -7,6 +7,9 @@ namespace TaskingBoss
 {
     public class DetailModel : PageModel
     {
+        [TempData]
+        public string Message { get; set; }
+
         public TaskItem Task { get; set; }
 
         private readonly ITaskData _taskData;
