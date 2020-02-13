@@ -1,0 +1,62 @@
+﻿@page
+@model TaskingBoss.IndexModel
+@{
+    ViewData["Title"] = "Overview";
+}
+
+<h1>Overview</h1>
+
+<div class="row p-1">
+    <div class="col-lg p-1">
+        <h6>Backlog <span class="badge badge-primary">@Model.BacklogTasks.Count()</span></h6>
+        @foreach (var item in Model.BacklogTasks)
+        {
+            <partial name="_OverviewCard" model="item" />
+        }
+    </div>
+    <div class="col-lg p-1">
+        <h6>Sprint <span class="badge badge-primary">@Model.SprintTasks.Count()</span></h6>
+        @foreach (var item in Model.SprintTasks)
+        {
+            <partial name="_OverviewCard" model="item" />
+        }
+    </div>
+    <div class="col-lg p-1">
+        <h6>Doing <span class="badge badge-primary">@Model.DoingTasks.Count()</span></h6>
+        @foreach (var item in Model.DoingTasks)
+        {
+            <partial name="_OverviewCard" model="item" />
+        }
+    </div>
+    <div class="col-lg p-1">
+        <h6>Blocked <span class="badge badge-primary">@Model.BlockedTasks.Count()</span></h6>
+        @foreach (var item in Model.BlockedTasks)
+        {
+            <partial name="_OverviewCard" model="item" />
+        }
+    </div>
+    <div class="col-lg p-1">
+        <h6>QA <span class="badge badge-primary">@Model.QaTasks.Count()</span></h6>
+        @foreach (var item in Model.QaTasks)
+        {
+            <partial name="_OverviewCard" model="item" />
+        }
+    </div>
+    <div class="col-lg p-1">
+        <h6>Done <span class="badge badge-primary">@Model.DoneTasks.Count()</span></h6>
+        @foreach (var item in Model.DoneTasks)
+        {
+            <partial name="_OverviewCard" model="item" />
+        }
+    </div>
+</div>
+
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    Launch demo modal
+</button>
+
+<partial name="_OverviewModal" />
+
+

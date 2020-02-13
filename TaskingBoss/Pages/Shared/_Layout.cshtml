@@ -11,7 +11,7 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
+            <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-page="/Index">TaskingBoss</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -25,12 +25,15 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Tasks/List">Tasks</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Overview/Index">Overview</a>
+                        </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-    <div class="container">
+    <div class="container-fluid">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
@@ -40,9 +43,9 @@
         <div class="container">
             @RenderSection("footer", required: false)
 
-            <vc:task-count></vc:task-count>
+            
 
-            &copy; 2020 - TaskingBoss - <a asp-area="" asp-page="/Privacy">Privacy</a>
+            &copy; 2020 - TaskingBoss - <a asp-area="" asp-page="/Privacy">Privacy</a> | <vc:task-count></vc:task-count>
         </div>
     </footer>
 

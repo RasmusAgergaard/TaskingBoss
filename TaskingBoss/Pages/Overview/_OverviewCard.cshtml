@@ -1,0 +1,11 @@
+﻿@using TaskingBoss.Core
+@model TaskItem
+
+    <div class="card shadow-sm mb-2">
+        <div class="card-body p-2">
+
+            @Model.Title
+            <a asp-page="../Tasks/Detail" asp-route-taskId="@Model.Id" class="stretched-link"></a>
+
+        </div>
+    </div>

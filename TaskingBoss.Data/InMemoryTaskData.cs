@@ -62,6 +62,11 @@ namespace TaskingBoss.Data
                    select t;
         }
 
+        public List<TaskItem> GetTasks()
+        {
+            throw new System.NotImplementedException();
+        }
+
         public TaskItem Update(TaskItem updatedTask)
         {
             var task = _tasks.SingleOrDefault(t => t.Id == updatedTask.Id);

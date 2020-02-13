@@ -57,6 +57,11 @@ namespace TaskingBoss.Data
             return query;
         }
 
+        public List<TaskItem> GetTasks()
+        {
+            return _db.Tasks.ToList();
+        }
+
         public TaskItem Update(TaskItem updatedTask)
         {
             //Attach the updated item to the db, so it monitors the changes. Then tell ef that the states is modified. This updates the item in the db
