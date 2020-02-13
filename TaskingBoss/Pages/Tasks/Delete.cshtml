@@ -1,0 +1,17 @@
+﻿@page "{taskId}"
+
+@model TaskingBoss.DeleteModel
+@{
+    ViewData["Title"] = "Delete task";
+}
+
+
+<h1>Delete!</h1>
+<div class="alert alert-danger">
+    Are you sure you want to delete task "@Model.Task.Title"?
+</div>
+
+<form method="post">
+    <button type="submit" class="btn btn-outline-danger">Yes!</button>
+    <a asp-page="./List" class="btn btn-outline-secondary">Cancel</a>
+</form>

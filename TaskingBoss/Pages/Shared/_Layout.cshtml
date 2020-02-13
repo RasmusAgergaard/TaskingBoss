@@ -3,8 +3,9 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - TaskingBoss</title>
+    <title>@ViewData["Title"] | Tasking Boss - The project management application</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
@@ -37,6 +38,10 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
+            @RenderSection("footer", required: false)
+
+            <vc:task-count></vc:task-count>
+
             &copy; 2020 - TaskingBoss - <a asp-area="" asp-page="/Privacy">Privacy</a>
         </div>
     </footer>

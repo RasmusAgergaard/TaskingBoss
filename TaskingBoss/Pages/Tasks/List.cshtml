@@ -1,6 +1,7 @@
 ﻿@page
 @model TaskingBoss.Pages.Tasks.ListModel
 @{
+    ViewData["Title"] = "All tasks";
 }
 
 <h1>Tasks</h1>
@@ -17,19 +18,14 @@
     </div>
 </form>
 
-<table class="table">
-    @foreach (var task in Model.Tasks)
-    {
-        <tr>
-            <td>@task.Title</td>
-            <td>@task.Description</td>
-            <td>@task.Status</td>
-            <td>
-                <a class="btn btn-outline-secondary btn-sm" asp-page="./Detail" asp-route-taskId="@task.Id">Details</a>
-                <a class="btn btn-outline-secondary btn-sm" asp-page="./Edit" asp-route-taskId="@task.Id">Edit</a>
-            </td>
-        </tr>
-    }
-</table>
+@foreach (var task in Model.Tasks)
+{
+    <partial name="_Summery" model="task" />
+}
 
 <a asp-page="./Edit" class="btn btn-outline-primary">Add new task</a>
+
+@section footer
+{
+    <div>Section footer text</div>
+}
