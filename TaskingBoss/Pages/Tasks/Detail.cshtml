@@ -6,16 +6,50 @@
 
 @if (Model.Message != null)
 {
-    <div class="alert alert-success" role="alert">
-        @Model.Message
+    <div class="row justify-content-md-center">
+        <div class="alert alert-success col-lg-6" role="alert">
+            @Model.Message
+        </div>
     </div>
 }
 
-<h1>@Model.Task.Title</h1>
 
-<div>Id: @Model.Task.Id</div>
-<div>Description: @Model.Task.Description</div>
-<div>Status: @Model.Task.Status</div>
+<div class="row justify-content-md-center">
 
-<a asp-page="./List" class="btn btn-outline-secondary">All tasks</a>
+    <div class="col-lg-4 border border-secondary rounded m-2 p-3">
+
+        <h3>@Model.Task.Title</h3>
+        <p class="small text-secondary">In @Model.Task.Status</p>
+
+        <hr />
+
+        <h5>Description:</h5>
+        <p>@Model.Task.Description</p>
+
+        <hr />
+
+        <h5 class="text-secondary">Log:</h5>
+        <p class="text-secondary small">Task created at 08/10/2015</p>
+
+    </div>
+
+    <div class="col-lg-2 border border-secondary rounded m-2 p-3">
+        <h5>Actions:</h5>
+        <a asp-page="#" asp-route-taskId="@Model.Task.Id" class="btn btn-outline-primary btn-block">Move task</a>
+
+        <hr />
+
+        <a asp-page="./Edit" asp-route-taskId="@Model.Task.Id" class="btn btn-outline-secondary btn-sm btn-block">Edit</a>
+        <a asp-page="#" asp-route-taskId="@Model.Task.Id" class="btn btn-outline-secondary btn-sm btn-block">Copy</a>
+        <a asp-page="#" asp-route-taskId="@Model.Task.Id" class="btn btn-outline-secondary btn-sm btn-block">Archive</a>
+        <a asp-page="#" asp-route-taskId="@Model.Task.Id" class="btn btn-outline-secondary btn-sm btn-block">Share</a>
+
+        <hr />
+
+        <a asp-page="./Delete" asp-route-taskId="@Model.Task.Id" class="btn btn-outline-danger btn-sm btn-block">Delete</a>
+    </div>
+
+</div>
+
+
 
