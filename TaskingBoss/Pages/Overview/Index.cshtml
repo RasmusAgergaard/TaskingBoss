@@ -1,10 +1,16 @@
 ﻿@page
 @model TaskingBoss.IndexModel
 @{
+    Layout = "_OverviewLayout";
     ViewData["Title"] = "Overview";
 }
 
-<h1>Overview</h1>
+<div class="w-100 text-center">
+
+    <h3>Overview</h3>
+    <hr />
+
+</div>
 
 <div class="row p-1">
     <div class="col-lg p-1">
@@ -53,9 +59,9 @@
 
 
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+@*<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
     Launch demo modal
-</button>
+</button>*@
 
 <partial name="_OverviewModal" />
 

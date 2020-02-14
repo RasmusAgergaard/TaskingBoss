@@ -24,10 +24,6 @@ namespace TaskingBoss
         public IndexModel(ITaskData taskData)
         {
             _taskData = taskData;
-        }
-
-        public void OnGet()
-        {
             Tasks = new List<TaskItem>();
             BacklogTasks = new List<TaskItem>();
             SprintTasks = new List<TaskItem>();
@@ -35,7 +31,10 @@ namespace TaskingBoss
             BlockedTasks = new List<TaskItem>();
             QaTasks = new List<TaskItem>();
             DoneTasks = new List<TaskItem>();
+        }
 
+        public void OnGet()
+        {
             Tasks = _taskData.GetTasks();
 
             foreach (var task in Tasks)

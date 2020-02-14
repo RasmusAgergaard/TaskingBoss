@@ -4,28 +4,64 @@
     ViewData["Title"] = "All tasks";
 }
 
-<h1>Tasks</h1>
 
-<form method="get">
-    <div class="form-group">
-        <div class="input-group">
-            <input type="search" class="form-control" asp-for="SearchTerm"/>
-            <span class="input-group-append">
-                <button class="btn btn-outline-secondary" type="submit">Search</button>
-            </span>
+<div class="w-100 text-center">
+    <h3>My Tasks</h3>
+</div>
+
+@*<form method="get">
+        <div class="form-group">
+            <div class="input-group">
+                <input type="search" class="form-control" asp-for="SearchTerm"/>
+                <span class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="submit">Search</button>
+                </span>
+            </div>
+
         </div>
+    </form>*@
 
+@if (Model.SprintTasks.Count != 0)
+{
+    <div class="row w-100">
+        <h5 class="mt-4 ml-2">Sprint</h5>
+
+        @foreach (var task in Model.SprintTasks)
+        {
+            <partial name="_TaskCard" model="task" />
+        }
     </div>
-</form>
-
-@foreach (var task in Model.Tasks)
-{
-    <partial name="_Summery" model="task" />
 }
 
-<a asp-page="./Edit" class="btn btn-outline-primary">Add new task</a>
 
-@section footer
+@if (Model.DoingTasks.Count != 0)
 {
-    <div>Section footer text</div>
+    <div class="row w-100">
+        <h5 class="mt-4 ml-2">Doing</h5>
+
+        @foreach (var task in Model.DoingTasks)
+        {
+            <partial name="_TaskCard" model="task" />
+        }
+    </div>
 }
+
+@if (Model.BlockedTasks.Count != 0)
+{
+    <div class="row w-100">
+        <h5 class="mt-4 ml-2">Blocked by you</h5>
+
+        @foreach (var task in Model.BlockedTasks)
+        {
+            <partial name="_TaskCard" model="task" />
+        }
+    </div>
+}
+
+
+
+
+@*@section footer
+    {
+        <div>Section footer text</div>
+    }*@
