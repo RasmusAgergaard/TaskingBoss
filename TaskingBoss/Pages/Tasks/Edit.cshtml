@@ -26,6 +26,7 @@
                 <input asp-for="Task.Title" class="form-control" />
                 <span class="text-danger" asp-validation-for="Task.Title"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="Task.Description"></label>
                 <textarea asp-for="Task.Description" class="form-control" rows="4"></textarea>
@@ -40,18 +41,24 @@
                     <label asp-for="Task.Priority"></label>
                     <select class="form-control" asp-for="Task.Priority" asp-items="@Model.Priority"></select>
                 </div>
+                <div class="col">
+                    <label asp-for="Task.StoryPoints">Story Points</label>
+                    <select asp-for="Task.StoryPoints" class="form-control">
+                        <option>0</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>5</option>
+                        <option>8</option>
+                        <option>13</option>
+                        <option>20</option>
+                        <option>40</option>
+                        <option>100</option>
+                    </select>
+                </div>
             </div>
 
-            <div class="row">
-                <div class="col">
-                    <label asp-for="Task.StoryPoints"></label>
-                    <input asp-for="Task.StoryPoints" class="form-control" />
-                </div>
-                <div class="col">
-                    <label asp-for="Task.Deadline"></label>
-                    <input asp-for="Task.Deadline" class="form-control" />
-                </div>
-            </div>
+
         </form>
 
     </div>

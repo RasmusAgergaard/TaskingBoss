@@ -4,7 +4,50 @@
     <div class="card shadow-sm mb-2">
         <div class="card-body p-2">
 
-            @Model.Title
+            <div>
+                <span class="badge badge-danger">High priority</span>
+            </div>
+
+            <div>
+                <span class="w-100">@Model.Title</span>
+            </div>
+
+            <div>
+                <span class="w-100 small">Story points: @Model.StoryPoints</span>
+            </div>
+
+
+            @*<div class="row mt-2">
+            <div class="col">
+                <div class="bg-success w-50 text-center rounded text-light small">
+                    @Model.StoryPoints
+                </div>
+            </div>
+            <div class="col">
+
+                @if (Model.Priority == TaskPriority.Low)
+                {
+                    <div class="bg-secondary text-center rounded text-light small">
+                        Low Priority
+                    </div>
+                }
+                else if (Model.Priority == TaskPriority.Normal)
+                {
+                    <div class="bg-primary w-100 text-center rounded text-light small">
+                        Normal Priority
+                    </div>
+                }
+                else if (Model.Priority == TaskPriority.High)
+                {
+                    <div class="bg-danger w-100 text-center rounded text-light small">
+                        High Priority
+                    </div>
+                }
+
+
+            </div>
+        </div>*@
+
             <a asp-page="../Tasks/Detail" asp-route-taskId="@Model.Id" class="stretched-link"></a>
 
         </div>

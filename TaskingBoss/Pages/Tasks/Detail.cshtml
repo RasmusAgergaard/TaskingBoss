@@ -17,7 +17,6 @@
 <div class="col-md-8 border border-secondary rounded m-2 p-3">
 
     <h3>@Model.Task.Title</h3>
-    <p class="small text-secondary">In @Model.Task.Status</p>
 
     <hr />
 
@@ -26,7 +25,24 @@
 
     <hr />
 
-    <h5 class="text-secondary">Log:</h5>
+    <div class="row">
+        <div class="col mx-4 text-center">
+            <span>Status:</span>
+            <h5>@Model.Task.Status</h5>
+        </div>
+        <div class="col mx-4 text-center">
+            <span>Priority:</span>
+            <h5>@Model.Task.Priority</h5>
+        </div>
+        <div class="col mx-4 text-center">
+            <span>Story Points:</span>
+            <h5>@Model.Task.StoryPoints</h5>
+        </div>
+    </div>
+
+    <hr />
+
+    <h5 class="text-secondary">Activity Log:</h5>
     <p class="text-secondary small">Task created at @Model.Task.CreateDate</p>
 
 </div>
@@ -34,16 +50,16 @@
 <div class="col border border-secondary rounded m-2 p-3">
 
     <h5>Actions:</h5>
-    <a class="btn btn-outline-primary btn-block" data-toggle="collapse" href="#collapseExample" role="button">Move task</a>
+    <a class="btn btn-outline-primary btn-block" data-toggle="collapse" href="#collapseExample" role="button">Move to</a>
 
     <div class="collapse" id="collapseExample">
         <div class="card card-body">
-            <a asp-page="./Edit" asp-route-taskId="@Model.Task.Id" class="btn btn-outline-secondary btn-sm btn-block disabled">Backlog (Current)</a>
-            <a asp-page="./Edit" asp-route-taskId="@Model.Task.Id" class="btn btn-outline-secondary btn-sm btn-block">Sprint</a>
-            <a asp-page="./Edit" asp-route-taskId="@Model.Task.Id" class="btn btn-outline-secondary btn-sm btn-block">Doing</a>
-            <a asp-page="./Edit" asp-route-taskId="@Model.Task.Id" class="btn btn-outline-secondary btn-sm btn-block">Blocked</a>
-            <a asp-page="./Edit" asp-route-taskId="@Model.Task.Id" class="btn btn-outline-secondary btn-sm btn-block">QA</a>
-            <a asp-page="./Edit" asp-route-taskId="@Model.Task.Id" class="btn btn-outline-secondary btn-sm btn-block">Done</a>
+            <a asp-page="./Edit" asp-route-taskId="@Model.Task.Id" class="btn btn-outline-primary btn-sm btn-block disabled">Backlog (Current)</a>
+            <a asp-page="./Edit" asp-route-taskId="@Model.Task.Id" class="btn btn-outline-primary btn-sm btn-block">Sprint</a>
+            <a asp-page="./Edit" asp-route-taskId="@Model.Task.Id" class="btn btn-outline-primary btn-sm btn-block">Doing</a>
+            <a asp-page="./Edit" asp-route-taskId="@Model.Task.Id" class="btn btn-outline-primary btn-sm btn-block">Blocked</a>
+            <a asp-page="./Edit" asp-route-taskId="@Model.Task.Id" class="btn btn-outline-primary btn-sm btn-block">QA</a>
+            <a asp-page="./Edit" asp-route-taskId="@Model.Task.Id" class="btn btn-outline-primary btn-sm btn-block">Done</a>
         </div>
     </div>
 
