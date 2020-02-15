@@ -15,6 +15,7 @@ namespace TaskingBoss
         [BindProperty]
         public TaskItem Task { get; set; }
         public IEnumerable<SelectListItem> Status { get; set; }
+        public IEnumerable<SelectListItem> Priority { get; set; }
 
         public EditModel(ITaskData taskData, IHtmlHelper htmlHelper)
         {
@@ -25,6 +26,7 @@ namespace TaskingBoss
         public IActionResult OnGet(int? taskId)
         {
             Status = _htmlHelper.GetEnumSelectList<TaskStatus>();
+            Priority = _htmlHelper.GetEnumSelectList<TaskPriority>();
 
             if (taskId.HasValue)
             {
@@ -48,6 +50,7 @@ namespace TaskingBoss
             if (!ModelState.IsValid)
             {
                 Status = _htmlHelper.GetEnumSelectList<TaskStatus>();
+                Priority = _htmlHelper.GetEnumSelectList<TaskPriority>();
                 return Page();
             }
 

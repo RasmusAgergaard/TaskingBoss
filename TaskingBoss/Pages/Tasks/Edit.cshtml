@@ -28,16 +28,30 @@
             </div>
             <div class="form-group">
                 <label asp-for="Task.Description"></label>
-                <input asp-for="Task.Description" class="form-control" />
-                <span class="text-danger" asp-validation-for="Task.Description"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Task.Status"></label>
-                <select class="form-control" asp-for="Task.Status" asp-items="@Model.Status"></select>
-                <span class="text-danger" asp-validation-for="Task.Status"></span>
+                <textarea asp-for="Task.Description" class="form-control" rows="4"></textarea>
             </div>
 
-            
+            <div class="row mb-2">
+                <div class="col">
+                    <label asp-for="Task.Status"></label>
+                    <select class="form-control" asp-for="Task.Status" asp-items="@Model.Status"></select>
+                </div>
+                <div class="col">
+                    <label asp-for="Task.Priority"></label>
+                    <select class="form-control" asp-for="Task.Priority" asp-items="@Model.Priority"></select>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <label asp-for="Task.StoryPoints"></label>
+                    <input asp-for="Task.StoryPoints" class="form-control" />
+                </div>
+                <div class="col">
+                    <label asp-for="Task.Deadline"></label>
+                    <input asp-for="Task.Deadline" class="form-control" />
+                </div>
+            </div>
         </form>
 
     </div>
