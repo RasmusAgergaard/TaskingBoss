@@ -1,0 +1,33 @@
+﻿@using TaskingBoss.Core
+@model TaskItem
+
+    <div class="col-sm-6 col-md-6 col-lg-3 p-2">
+        <div class="card mb-2">
+            <div class="card-body p-2">
+
+                <div>
+                    @if (Model.Priority == TaskPriority.High)
+                    {
+                        <span class="badge badge-danger">High priority</span>
+                    }
+                    @if (Model.Priority == TaskPriority.Low)
+                    {
+                        <span class="badge badge-secondary">Low priority</span>
+                    }
+
+                </div>
+
+                <div>
+                    <span class="w-100">@Model.Title</span>
+                </div>
+
+                <div>
+                    <span class="w-100 small">Story points: @Model.StoryPoints</span>
+                </div>
+
+                <a asp-page="../Tasks/Detail" asp-route-taskId="@Model.Id" class="stretched-link"></a>
+            </div>
+        </div>
+    </div>
+
+

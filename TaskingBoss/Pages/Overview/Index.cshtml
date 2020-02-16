@@ -3,13 +3,16 @@
 @{
     Layout = "_OverviewLayout";
     ViewData["Title"] = "Overview";
+
+    float percentDoneResult = ((float)Model.DoneSP / (float)Model.AllSP) * 100;
+    int percentDoneShow = (int)percentDoneResult;
 }
 
     <div class="w-100 text-center">
 
-        <h3>Overview</h3>
-        <div class="progress">
-            <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+        <h3>Sprint overview</h3>
+        <div class="progress" style="height: 18px;">
+            <div class="progress-bar" role="progressbar" style="width: @percentDoneShow%;">Sprint @percentDoneShow% done</div>
         </div>
         <hr />
 
@@ -17,55 +20,88 @@
 
 <div class="row p-1">
     <div class="col-lg p-1">
-        <h6>Backlog <span class="badge badge-primary">@Model.BacklogTasks.Count()</span></h6>
-        @foreach (var item in Model.BacklogTasks)
-        {
-            <partial name="_OverviewCard" model="item" />
-        }
-    </div>
-    <div class="col-lg p-1">
-        <h6>Sprint <span class="badge badge-primary">@Model.SprintTasks.Count()</span></h6>
+
+        <div class="row">
+            <div class="col">
+                <h6>Sprint</h6>
+            </div>
+
+            <div class="col">
+                <span class="small">@Model.SprintTasks.Count() tasks - @Model.SprintSP story points</span>
+            </div>
+        </div>
+        
         @foreach (var item in Model.SprintTasks)
         {
             <partial name="_OverviewCard" model="item" />
         }
     </div>
     <div class="col-lg p-1">
-        <h6>Doing <span class="badge badge-primary">@Model.DoingTasks.Count()</span></h6>
+
+        <div class="row">
+            <div class="col">
+                <h6>Doing</h6>
+            </div>
+
+            <div class="col">
+                <span class="small">@Model.DoingTasks.Count() tasks - @Model.DoingSP story points</span>
+            </div>
+        </div>
+
         @foreach (var item in Model.DoingTasks)
         {
             <partial name="_OverviewCard" model="item" />
         }
     </div>
     <div class="col-lg p-1">
-        <h6>Blocked <span class="badge badge-primary">@Model.BlockedTasks.Count()</span></h6>
+
+        <div class="row">
+            <div class="col">
+                <h6>Blocked</h6>
+            </div>
+
+            <div class="col">
+                <span class="small">@Model.BlockedTasks.Count() tasks - @Model.BlockedSP story points</span>
+            </div>
+        </div>
+
         @foreach (var item in Model.BlockedTasks)
         {
             <partial name="_OverviewCard" model="item" />
         }
     </div>
     <div class="col-lg p-1">
-        <h6>QA <span class="badge badge-primary">@Model.QaTasks.Count()</span></h6>
+
+        <div class="row">
+            <div class="col">
+                <h6>QA</h6>
+            </div>
+
+            <div class="col">
+                <span class="small">@Model.QaTasks.Count() tasks - @Model.QaSP story points</span>
+            </div>
+        </div>
+
         @foreach (var item in Model.QaTasks)
         {
             <partial name="_OverviewCard" model="item" />
         }
     </div>
     <div class="col-lg p-1">
-        <h6>Done <span class="badge badge-primary">@Model.DoneTasks.Count()</span></h6>
+
+        <div class="row">
+            <div class="col">
+                <h6>Done</h6>
+            </div>
+
+            <div class="col">
+                <span class="small">@Model.DoneTasks.Count() tasks - @Model.DoneSP story points</span>
+            </div>
+        </div>
+
         @foreach (var item in Model.DoneTasks)
         {
             <partial name="_OverviewCard" model="item" />
         }
     </div>
 </div>
-
-
-<!-- Button trigger modal -->
-@*<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-    Launch demo modal
-</button>*@
-
-<partial name="_OverviewModal" />
-
-

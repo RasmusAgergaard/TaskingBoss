@@ -1,31 +1,37 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
 using TaskingBoss.Core;
 using TaskingBoss.Data;
 
-namespace TaskingBoss.Pages
+namespace TaskingBoss.Pages.Backlog
 {
     public class IndexModel : PageModel
     {
-        private readonly ILogger<IndexModel> _logger;
         private readonly ITaskData _taskData;
 
         public List<TaskItem> Tasks { get; set; }
+        public List<TaskItem> BacklogTasks { get; set; }
 
-        public IndexModel(ILogger<IndexModel> logger, ITaskData taskData)
+        public IndexModel(ITaskData taskData)
         {
-            _logger = logger;
             _taskData = taskData;
+            Tasks = _taskData.GetTasks();
+            BacklogTasks = new List<TaskItem>();
         }
 
         public void OnGet()
         {
-            Tasks = _taskData.GetTasks();
+            foreach (var task in Tasks)
+            {
+                if (task.Status == Core.TaskStatus.Backlog)
+                {
+                    BacklogTasks.Add(task);
+                }
+            }
         }
     }
 }

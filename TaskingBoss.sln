@@ -5,9 +5,9 @@ VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskingBoss", "TaskingBoss\TaskingBoss.csproj", "{3B1DC563-190F-42E0-A397-65E21AC414AC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskingBoss.Core", "TaskingBoss.Core\TaskingBoss.Core.csproj", "{6A5C71DE-482E-4693-93D1-CC0158810D4A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskingBoss.Core", "TaskingBoss.Core\TaskingBoss.Core.csproj", "{6A5C71DE-482E-4693-93D1-CC0158810D4A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskingBoss.Data", "TaskingBoss.Data\TaskingBoss.Data.csproj", "{F8E3E0ED-A211-40D6-A8E5-18F8F632AA29}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskingBoss.Data", "TaskingBoss.Data\TaskingBoss.Data.csproj", "{F8E3E0ED-A211-40D6-A8E5-18F8F632AA29}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

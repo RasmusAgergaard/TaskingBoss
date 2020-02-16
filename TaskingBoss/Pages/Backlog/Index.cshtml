@@ -1,0 +1,21 @@
+﻿@page
+@model TaskingBoss.Pages.Backlog.IndexModel
+@{
+}
+
+<div class="w-100 text-center">
+
+    <h3>Backlog - @Model.BacklogTasks.Count tasks</h3>
+    <a class="btn btn-outline-success btn-sm" asp-page="/Tasks/Edit">Create new task</a>
+    <hr />
+
+</div>
+
+<div class="row">
+    @foreach (var task in Model.BacklogTasks)
+    {
+        <partial name="_BacklogCard" model="task" />
+    }
+</div>
+
+
