@@ -1,11 +1,14 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Frontpage";
+    ViewData["Title"] = "Dashboard";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Tasking Boss</h1>
+<div class="w-100" style="height:100px"></div>
+
+<div class="text-center m-4">
+    <img src="~/images/tb_logo.png" class="img-fluid"/>
+    <br /><br />
     <p>The project management application</p>
-    <p>@Model.Tasks.Count total tasks</p>
+    @*<p>@Model.Tasks.Count total tasks</p>*@
 </div>

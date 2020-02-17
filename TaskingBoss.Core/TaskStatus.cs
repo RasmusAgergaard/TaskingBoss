@@ -7,6 +7,7 @@
         Doing,
         Blocked,
         QA,
-        Done
+        Done,
+        Archived
     }
 }

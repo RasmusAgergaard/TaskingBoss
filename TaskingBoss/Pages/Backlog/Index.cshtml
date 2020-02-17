@@ -1,6 +1,7 @@
 ﻿@page
 @model TaskingBoss.Pages.Backlog.IndexModel
 @{
+    ViewData["Title"] = "Backlog";
 }
 
 <div class="w-100 text-center">
@@ -11,7 +12,7 @@
 
 </div>
 
-<div class="row">
+<div class="row m-2">
     @foreach (var task in Model.BacklogTasks)
     {
         <partial name="_BacklogCard" model="task" />

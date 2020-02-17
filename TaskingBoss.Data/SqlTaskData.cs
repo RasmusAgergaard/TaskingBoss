@@ -62,6 +62,55 @@ namespace TaskingBoss.Data
             return _db.Tasks.ToList();
         }
 
+        public IEnumerable<TaskItem> GetTasks(TaskStatus status)
+        {
+            var foundTasks = new List<TaskItem>();
+
+            switch (status)
+            {
+                case TaskStatus.Backlog:
+                    var backlog = (from t in _db.Tasks
+                                    where t.Status == TaskStatus.Backlog
+                                    select t).OrderByDescending(t => t.Priority);
+                    foundTasks = backlog.ToList();
+                    break;
+                case TaskStatus.Sprint:
+                    var sprint = (from t in _db.Tasks
+                                    where t.Status == TaskStatus.Sprint
+                                    select t).OrderByDescending(t => t.Priority);
+                    foundTasks = sprint.ToList();
+                    break;
+                case TaskStatus.Doing:
+                    var doing = (from t in _db.Tasks
+                                    where t.Status == TaskStatus.Doing
+                                    select t).OrderByDescending(t => t.Priority);
+                    foundTasks = doing.ToList();
+                    break;
+                case TaskStatus.Blocked:
+                    var blocked = (from t in _db.Tasks
+                                    where t.Status == TaskStatus.Blocked
+                                    select t).OrderByDescending(t => t.Priority);
+                    foundTasks = blocked.ToList();
+                    break;
+                case TaskStatus.QA:
+                    var qa = (from t in _db.Tasks
+                                where t.Status == TaskStatus.QA
+                                select t).OrderByDescending(t => t.Priority); ;
+                    foundTasks = qa.ToList();
+                    break;
+                case TaskStatus.Done:
+                    var done = (from t in _db.Tasks
+                                where t.Status == TaskStatus.Done
+                                select t).OrderByDescending(t => t.Priority);
+                    foundTasks = done.ToList();
+                    break;
+                default:
+                    break;
+            }
+
+            return foundTasks;
+        }
+
         public TaskItem Update(TaskItem updatedTask)
         {
             //Attach the updated item to the db, so it monitors the changes. Then tell ef that the states is modified. This updates the item in the db

@@ -4,13 +4,13 @@ using System.Linq;
 using TaskingBoss.Core;
 using TaskingBoss.Data;
 
-namespace TaskingBoss.Pages.Backlog
+namespace TaskingBoss.Pages.QA
 {
     public class IndexModel : PageModel
     {
         private readonly ITaskData _taskData;
 
-        public List<TaskItem> BacklogTasks { get; set; }
+        public List<TaskItem> QaTasks { get; set; }
 
         public IndexModel(ITaskData taskData)
         {
@@ -19,7 +19,7 @@ namespace TaskingBoss.Pages.Backlog
 
         public void OnGet()
         {
-            BacklogTasks = _taskData.GetTasks(Core.TaskStatus.Backlog).ToList();
+            QaTasks = _taskData.GetTasks(TaskStatus.QA).ToList();
         }
     }
 }

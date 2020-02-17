@@ -1,7 +1,7 @@
 ﻿@page
 @model TaskingBoss.Pages.Tasks.ListModel
 @{
-    ViewData["Title"] = "All tasks";
+    ViewData["Title"] = "My Tasks";
 }
 
 
@@ -23,18 +23,6 @@
 
         </div>
     </form>*@
-
-@if (Model.SprintTasks.Count != 0)
-{
-    <div class="row w-100">
-        <h5 class="mt-4 ml-2">Sprint</h5>
-
-        @foreach (var task in Model.SprintTasks)
-        {
-            <partial name="_TaskCard" model="task" />
-        }
-    </div>
-}
 
 
 @if (Model.DoingTasks.Count != 0)
@@ -61,7 +49,17 @@
     </div>
 }
 
+@if (Model.SprintTasks.Count != 0)
+{
+    <div class="row w-100">
+        <h5 class="mt-4 ml-2">Sprint</h5>
 
+        @foreach (var task in Model.SprintTasks)
+        {
+            <partial name="_TaskCard" model="task" />
+        }
+    </div>
+}
 
 
 @*@section footer

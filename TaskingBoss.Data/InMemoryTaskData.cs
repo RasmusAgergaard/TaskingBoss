@@ -67,6 +67,11 @@ namespace TaskingBoss.Data
             throw new System.NotImplementedException();
         }
 
+        public IEnumerable<TaskItem> GetTasks(TaskStatus status)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public TaskItem Update(TaskItem updatedTask)
         {
             var task = _tasks.SingleOrDefault(t => t.Id == updatedTask.Id);

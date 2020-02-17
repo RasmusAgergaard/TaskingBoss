@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Collections.Generic;
+using System.Linq;
 using TaskingBoss.Core;
 using TaskingBoss.Data;
 
@@ -26,47 +27,34 @@ namespace TaskingBoss
         public IndexModel(ITaskData taskData)
         {
             _taskData = taskData;
-            Tasks = new List<TaskItem>();
-            SprintTasks = new List<TaskItem>();
-            DoingTasks = new List<TaskItem>();
-            BlockedTasks = new List<TaskItem>();
-            QaTasks = new List<TaskItem>();
-            DoneTasks = new List<TaskItem>();
-
-            AllSP = 0;
-            SprintSP = 0;
-            DoingSP = 0;
-            BlockedSP = 0;
-            QaSP = 0;
-            DoneSP = 0;
         }
 
         public void OnGet()
         {
             Tasks = _taskData.GetTasks();
+            SprintTasks = _taskData.GetTasks(TaskStatus.Sprint).ToList();
+            DoingTasks = _taskData.GetTasks(TaskStatus.Doing).ToList();
+            BlockedTasks = _taskData.GetTasks(TaskStatus.Blocked).ToList();
+            QaTasks = _taskData.GetTasks(TaskStatus.QA).ToList();
+            DoneTasks = _taskData.GetTasks(TaskStatus.Done).ToList();
 
             foreach (var task in Tasks)
             {
                 switch (task.Status)
                 {
-                    case Core.TaskStatus.Sprint:
-                        SprintTasks.Add(task);
+                    case TaskStatus.Sprint:
                         SprintSP += task.StoryPoints;
                         break;
-                    case Core.TaskStatus.Doing:
-                        DoingTasks.Add(task);
+                    case TaskStatus.Doing:
                         DoingSP += task.StoryPoints;
                         break;
-                    case Core.TaskStatus.Blocked:
-                        BlockedTasks.Add(task);
+                    case TaskStatus.Blocked:
                         BlockedSP += task.StoryPoints;
                         break;
-                    case Core.TaskStatus.QA:
-                        QaTasks.Add(task);
+                    case TaskStatus.QA:
                         QaSP += task.StoryPoints;
                         break;
-                    case Core.TaskStatus.Done:
-                        DoneTasks.Add(task);
+                    case TaskStatus.Done:
                         DoneSP += task.StoryPoints;
                         break;
                     default:
