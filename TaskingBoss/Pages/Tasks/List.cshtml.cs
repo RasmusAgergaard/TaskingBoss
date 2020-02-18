@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using TaskingBoss.Data;
 
 namespace TaskingBoss.Pages.Tasks
 {
+    [Authorize]
     public class ListModel : PageModel
     {
         private readonly ITaskData _taskData;

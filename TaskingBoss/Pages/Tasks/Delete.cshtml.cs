@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using TaskingBoss.Core;
 using TaskingBoss.Data;
 
 namespace TaskingBoss
 {
+    [Authorize]
     public class DeleteModel : PageModel
     {
         private readonly ITaskData _taskData;

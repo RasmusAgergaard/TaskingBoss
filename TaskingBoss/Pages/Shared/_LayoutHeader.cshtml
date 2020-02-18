@@ -1,7 +1,11 @@
-﻿<header>
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<header>
     <nav class="navbar navbar-expand-lg navbar-light shadow-sm mb-4">
 
-        <a class="navbar-brand" asp-page="/Index"><img src="~/images/tb_logo.png" style="width: 100px; height:auto;" /></a>
+        <a class="navbar-brand" asp-page="/Dashboard/Index"><img src="~/images/tb_logo.png" style="width: 100px; height:auto;" /></a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
             <span class="navbar-toggler-icon"></span>
@@ -11,7 +15,7 @@
             <ul class="navbar-nav mr-auto">
 
                 <li class="nav-item">
-                    <a class="nav-link" asp-page="/Index">Dashboard</a>
+                    <a class="nav-link" asp-page="/Dashboard/Index">Dashboard</a>
                 </li>
 
                 <li class="nav-item">
@@ -34,13 +38,20 @@
                     <a class="nav-link disabled" asp-page="#">Boss-View</a>
                 </li>
 
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown">
+                        @User.Identity.Name
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" id="manage" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Manage Account</a>
+                        <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Logout" title="Logout">Logout</a>
+                    </div>
+                </li>
+
             </ul>
 
             <form class="form-inline my-3 my-lg-0">
 
-                <a class="btn btn-outline-secondary mr-2 btn-sm disabled" asp-page="#">Profile <span class="badge badge-primary">9</span></a>
-
-                <a class="btn btn-outline-secondary mr-2 btn-sm disabled" asp-page="#">Search</a>
                 <a class="btn btn-outline-success btn-sm" asp-page="/Tasks/Edit">Quick Create</a>
 
             </form>

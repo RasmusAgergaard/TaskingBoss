@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Collections.Generic;
 using System.Linq;
 using TaskingBoss.Core;
@@ -6,6 +7,7 @@ using TaskingBoss.Data;
 
 namespace TaskingBoss
 {
+    [Authorize]
     public class IndexModel : PageModel
     {
         private readonly ITaskData _taskData;

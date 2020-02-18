@@ -1,14 +1,20 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Dashboard";
+    Layout = "_FontPageLayout";
+    ViewData["Title"] = "Frontpage";
 }
 
 <div class="w-100" style="height:100px"></div>
 
 <div class="text-center m-4">
-    <img src="~/images/tb_logo.png" class="img-fluid"/>
+    <img src="~/images/tb_logo.png" class="img-fluid" />
     <br /><br />
     <p>The project management application</p>
-    @*<p>@Model.Tasks.Count total tasks</p>*@
+
+    <p>@Model.IsSignedIn</p>
+
+    <a class="btn btn-outline-primary" id="login" asp-area="Identity" asp-page="/Account/Login">Log ind</a>
+    <span> or </span>
+    <a class="btn btn-outline-primary" asp-area="Identity" asp-page="/Account/Register">Create account</a>
 </div>
