@@ -12,11 +12,10 @@
 
 </div>
 
-<div class="row m-2">
-    @foreach (var task in Model.BacklogTasks)
-    {
-        <partial name="_BacklogCard" model="task" />
-    }
-</div>
+@foreach (var task in Model.BacklogTasks)
+{
+    <partial name="_BacklogCard" model="task" />
+}
+
 
 

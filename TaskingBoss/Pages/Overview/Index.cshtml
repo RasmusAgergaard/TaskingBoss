@@ -11,17 +11,23 @@
     <div class="w-100 text-center">
 
         <h3>Sprint overview</h3>
-        <div class="progress" style="height: 18px;">
+        <div class="progress mb-3" style="height: 18px;">
             <div class="progress-bar" role="progressbar" style="width: @percentDoneShow%;">Sprint @percentDoneShow% done</div>
         </div>
-        <hr />
+        <hr class="m-0" />
 
     </div>
 
-<div class="row p-1">
-    <div class="col-lg p-1">
+<div class="row">
+    <div class="col-lg px-2 mt-3">
 
-        <h6>Sprint <span class="small">(@Model.SprintTasks.Count() tasks - @Model.SprintSP story points)</span></h6>
+        <div class="text-center pb-1">
+            <h6>
+                Sprint
+                <br />
+                <span class="small">(@Model.SprintTasks.Count() tasks - @Model.SprintSP story points)</span>
+            </h6>
+        </div>
 
         @foreach (var item in Model.SprintTasks)
         {
@@ -29,9 +35,15 @@
         }
 
     </div>
-    <div class="col-lg p-1">
+    <div class="col-lg px-2 mt-3">
 
-        <h6>Doing <span class="small">(@Model.DoingTasks.Count() tasks - @Model.DoingSP story points)</span></h6>
+        <div class="text-center pb-1">
+            <h6>
+                Doing
+                <br />
+                <span class="small">(@Model.DoingTasks.Count() tasks - @Model.DoingSP story points)</span>
+            </h6>
+        </div>
 
         @foreach (var item in Model.DoingTasks)
         {
@@ -39,9 +51,15 @@
         }
 
     </div>
-    <div class="col-lg p-1">
+    <div class="col-lg px-2 mt-3">
 
-        <h6>Blocked <span class="small">(@Model.BlockedTasks.Count() tasks - @Model.BlockedSP story points)</span></h6>
+        <div class="text-center pb-1">
+            <h6>
+                Blocked
+                <br />
+                <span class="small">(@Model.BlockedTasks.Count() tasks - @Model.BlockedSP story points)</span>
+            </h6>
+        </div>
 
         @foreach (var item in Model.BlockedTasks)
         {
@@ -49,18 +67,31 @@
         }
 
     </div>
-    <div class="col-lg p-1">
+    <div class="col-lg px-2 mt-3">
 
-        <h6>QA <span class="small">(@Model.QaTasks.Count() tasks - @Model.QaSP story points)</span></h6>
+        <div class="text-center pb-1">
+            <h6>
+                QA
+                <br />
+                <span class="small">(@Model.QaTasks.Count() tasks - @Model.QaSP story points)</span>
+            </h6>
+        </div>
+
 
         @foreach (var item in Model.QaTasks)
         {
             <partial name="_OverviewCard" model="item" />
         }
     </div>
-    <div class="col-lg p-1">
+    <div class="col-lg px-2 mt-3">
 
-        <h6>Done <span class="small">(@Model.DoneTasks.Count() tasks - @Model.DoneSP story points)</span></h6>
+        <div class="text-center pb-1">
+            <h6>
+                Done
+                <br />
+                <span class="small">(@Model.DoneTasks.Count() tasks - @Model.DoneSP story points)</span>
+            </h6>
+        </div>
 
         @foreach (var item in Model.DoneTasks)
         {
