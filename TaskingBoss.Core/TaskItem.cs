@@ -28,7 +28,5 @@ namespace TaskingBoss.Core
         public string ActivityLog { get; set; }
         public bool HasDeadline { get; set; }
         public DateTime Deadline { get; set; }
-        
-        //public List<Task> Interdependence { get; set; }
     }
 }

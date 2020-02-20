@@ -11,6 +11,15 @@ namespace TaskingBoss.Data
 
         }
 
+        //Types that should be created in the database
         public DbSet<TaskItem> Tasks { get; set; }
+        public DbSet<Project> Projects { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }
