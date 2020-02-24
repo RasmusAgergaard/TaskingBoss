@@ -1,0 +1,17 @@
+﻿@page
+@model TaskingBoss.Pages.Projects.ListModel
+@{
+}
+
+<h1>Projects</h1>
+
+@foreach (var project in Model.Projects)
+{
+    <p>
+        @project.Title
+        <br />
+        <a asp-page="../Projects/Edit" asp-route-projectId="@project.ProjectId">Edit</a>
+    </p>
+}
+
+<a class="btn btn-outline-success btn-sm" asp-page="/Projects/Edit">Create new project</a>
