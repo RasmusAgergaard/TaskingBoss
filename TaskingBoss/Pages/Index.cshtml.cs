@@ -1,32 +1,25 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Logging;
 
 namespace TaskingBoss.Pages
 {
     public class IndexModel : PageModel
     {
-        private readonly SignInManager<IdentityUser> _signInManager;
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly ILogger<IndexModel> _logger;
 
-        public bool IsSignedIn { get; set; }
-
-        public IndexModel(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager)
+        public IndexModel(ILogger<IndexModel> logger)
         {
-            _signInManager = signInManager;
-            _userManager = userManager;
-            IsSignedIn = false;
+            _logger = logger;
         }
 
-        public IActionResult OnGet()
+        public void OnGet()
         {
-            if (_signInManager.IsSignedIn(User))
-            {
-                IsSignedIn = true;
-                return RedirectToPage("/Dashboard/Index");
-            }
 
-            return Page();
         }
     }
 }
