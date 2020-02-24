@@ -10,8 +10,12 @@
     <p>
         @project.Title
         <br />
-        <a asp-page="../Projects/Edit" asp-route-projectId="@project.ProjectId">Edit</a>
+        <a asp-page="/ProjectView/Index" asp-route-projectId="@project.ProjectId">Go to project</a>
+        <br />
+        <a asp-page="./Edit" asp-route-projectId="@project.ProjectId">Edit</a>
     </p>
+
+    <hr />
 }
 
 <a class="btn btn-outline-success btn-sm" asp-page="/Projects/Edit">Create new project</a>

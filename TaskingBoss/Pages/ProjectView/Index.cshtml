@@ -1,0 +1,10 @@
+﻿@page
+@model TaskingBoss.Pages.ProjectView.IndexModel
+@{
+    Layout = "_ProjectViewLayout";
+}
+
+<h1>@Model.Project.Title</h1>
+<p>Number of tasks in project: @Model.NumberOfTasks</p>
+
+<a class="btn btn-outline-success btn-sm" asp-page="/Tasks/Edit" asp-route-projectId="@Model.Project.ProjectId">Create new task</a>

@@ -5,11 +5,13 @@
 
 <body>
 
-    <partial name="_LayoutHeader" />
+    <partial name="_ProjectViewLayoutHeader" />
 
     <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
+        <main role="main" class="">
+            <div class="row justify-content-center">
+                @RenderBody()
+            </div>
         </main>
     </div>
 

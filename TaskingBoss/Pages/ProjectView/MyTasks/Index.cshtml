@@ -1,0 +1,48 @@
+﻿@page
+@model TaskingBoss.Pages.ProjectView.MyTasks.IndexModel
+@{
+    Layout = "_ProjectViewLayout";
+}
+
+<div class="w-100 text-center">
+
+    <h3>My tasks</h3>
+    <hr />
+
+</div>
+
+@if (Model.DoingTasks.Count != 0)
+{
+    <div class="row w-100">
+        <h5 class="mt-4 ml-2">Doing</h5>
+
+        @foreach (var task in Model.DoingTasks)
+        {
+            <partial name="_TaskCard" model="task" />
+        }
+    </div>
+}
+
+@if (Model.BlockedTasks.Count != 0)
+{
+    <div class="row w-100">
+        <h5 class="mt-4 ml-2">Blocked by you</h5>
+
+        @foreach (var task in Model.BlockedTasks)
+        {
+            <partial name="_TaskCard" model="task" />
+        }
+    </div>
+}
+
+@if (Model.SprintTasks.Count != 0)
+{
+    <div class="row w-100">
+        <h5 class="mt-4 ml-2">Sprint</h5>
+
+        @foreach (var task in Model.SprintTasks)
+        {
+            <partial name="_TaskCard" model="task" />
+        }
+    </div>
+}
