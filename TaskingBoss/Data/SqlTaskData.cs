@@ -69,6 +69,57 @@ namespace TaskingBoss.Data
             return count;
         }
 
+        public ProjectTaskItemViewModel GetProjectWithTasks(TaskStatus status, int projectId)
+        {
+            var tasks = GetTasks(projectId);
+            var foundTasks = new ProjectTaskItemViewModel();
+            foundTasks.Project = _db.Projects.Find(projectId);
+
+            switch (status)
+            {
+                case TaskStatus.Backlog:
+                    var backlog = (from t in tasks
+                                   where t.Status == TaskStatus.Backlog
+                                   select t).OrderByDescending(t => t.Priority);
+                    foundTasks.Tasks = backlog.ToList();
+                    break;
+                case TaskStatus.Sprint:
+                    var sprint = (from t in tasks
+                                  where t.Status == TaskStatus.Sprint
+                                  select t).OrderByDescending(t => t.Priority);
+                    foundTasks.Tasks = sprint.ToList();
+                    break;
+                case TaskStatus.Doing:
+                    var doing = (from t in tasks
+                                 where t.Status == TaskStatus.Doing
+                                 select t).OrderByDescending(t => t.Priority);
+                    foundTasks.Tasks = doing.ToList();
+                    break;
+                case TaskStatus.Blocked:
+                    var blocked = (from t in tasks
+                                   where t.Status == TaskStatus.Blocked
+                                   select t).OrderByDescending(t => t.Priority);
+                    foundTasks.Tasks = blocked.ToList();
+                    break;
+                case TaskStatus.QA:
+                    var qa = (from t in tasks
+                              where t.Status == TaskStatus.QA
+                              select t).OrderByDescending(t => t.Priority); ;
+                    foundTasks.Tasks = qa.ToList();
+                    break;
+                case TaskStatus.Done:
+                    var done = (from t in tasks
+                                where t.Status == TaskStatus.Done
+                                select t).OrderByDescending(t => t.Priority);
+                    foundTasks.Tasks = done.ToList();
+                    break;
+                default:
+                    break;
+            }
+
+            return foundTasks;
+        }
+
         public List<TaskItem> GetTasks(int projectId)
         {
             var tasks = new List<TaskItem>();
@@ -85,7 +136,7 @@ namespace TaskingBoss.Data
             return tasks;
         }
 
-        public IEnumerable<TaskItem> GetTasks(Core.TaskStatus status, int projectId)
+        public IEnumerable<TaskItem> GetTasks(TaskStatus status, int projectId)
         {
             var tasks = GetTasks(projectId);
             var foundTasks = new List<TaskItem>();
@@ -130,6 +181,12 @@ namespace TaskingBoss.Data
                     break;
                 default:
                     break;
+            }
+
+            //Set projectId route
+            foreach (var task in foundTasks)
+            {
+                task.ProjectIdRoute = projectId;
             }
 
             return foundTasks;

@@ -1,9 +1,6 @@
-using System;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using TaskingBoss.Core;
 using TaskingBoss.Data;
 
@@ -26,7 +23,7 @@ namespace TaskingBoss.Pages.ProjectView.Backlog
         public void OnGet(int projectId)
         {
             Project = _projectData.GetById(projectId);
-            BacklogTasks = _taskData.GetTasks(Core.TaskStatus.Backlog, projectId).ToList();
+            BacklogTasks = _taskData.GetTasks(TaskStatus.Backlog, projectId).ToList();
         }
     }
 }

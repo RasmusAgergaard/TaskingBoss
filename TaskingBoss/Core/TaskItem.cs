@@ -27,5 +27,6 @@ namespace TaskingBoss.Core
         public string ActivityLog { get; set; }
         public bool HasDeadline { get; set; }
         public DateTime Deadline { get; set; }
+        public int ProjectIdRoute { get; set; } //Only populated temporary to link to task edit
     }
 }

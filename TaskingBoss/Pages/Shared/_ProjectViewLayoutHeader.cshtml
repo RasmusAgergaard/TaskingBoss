@@ -1,14 +1,15 @@
 ﻿<header>
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
         <div class="container">
+
             <a class="navbar-brand" asp-page="/ProjectView/Index" asp-route-projectId="@Model.Project.ProjectId">@Model.Project.Title</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
+           
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                <partial name="_LoginPartial" />
-                <ul class="navbar-nav flex-grow-1">
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
 
                     <li class="nav-item">
                         <a class="nav-link" asp-page="/ProjectView/Backlog/Index" asp-route-projectId="@Model.Project.ProjectId">Backlog</a>
@@ -30,7 +31,22 @@
                         <a class="nav-link disabled" asp-page="/ProjectView/BossView/Index" asp-route-projectId="@Model.Project.ProjectId">Boss-View</a>
                     </li>
 
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown">
+                            @User.Identity.Name
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" id="manage" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Manage Account</a>
+                            <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Logout" title="Logout">Logout</a>
+                        </div>
+                    </li>
+
                 </ul>
+
+                <form class="form-inline my-3 my-lg-0">
+                    <a class="btn btn-outline-success btn-sm" asp-page="/Tasks/Edit" asp-route-projectId="@Model.Project.ProjectId">Create Task</a>
+                </form>
+
             </div>
         </div>
     </nav>

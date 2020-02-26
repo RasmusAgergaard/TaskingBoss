@@ -4,7 +4,59 @@
     Layout = "_ProjectViewLayout";
 }
 
-<h1>@Model.Project.Title</h1>
-<p>Number of tasks in project: @Model.NumberOfTasks</p>
+    <div class="w-100 text-center">
 
-<a class="btn btn-outline-success btn-sm" asp-page="/Tasks/Edit" asp-route-projectId="@Model.Project.ProjectId">Create new task</a>
+        <h1>@Model.Project.Title</h1>
+        <p>Total Number of open tasks: @Model.NumberOfTasks</p>
+
+    </div>
+
+    <div class="col-md-8">
+
+        <div class="w-100 rounded shadow-sm p-2">
+            <h6>Project progress:</h6>
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" style="width: @Model.ProjectProgress%">@Model.ProjectProgress%</div>
+            </div>
+        </div>
+
+        <div class="w-100 rounded shadow-sm p-2 mt-3">
+            <h6>Sprint progress:</h6>
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" style="width: @Model.SprintProgress%">@Model.SprintProgress%</div>
+            </div>
+        </div>
+
+
+        <div class="w-100 rounded shadow-sm p-2 mt-3">
+            <h6>Story Points Distribution:</h6>
+
+            <div class="row">
+                <div class="col-sm text-center">
+                    <span>Backlog:</span>
+                    <h5>@Model.BacklogSP</h5>
+                </div>
+                <div class="col-sm text-center">
+                    <span>Sprint:</span>
+                    <h5>@Model.SprintSP</h5>
+                </div>
+                <div class="col-sm text-center">
+                    <span>Doing:</span>
+                    <h5>@Model.DoingSP</h5>
+                </div>
+                <div class="col-sm text-center">
+                    <span>Blocked:</span>
+                    <h5>@Model.BlockedSP</h5>
+                </div>
+                <div class="col-sm text-center">
+                    <span>QA:</span>
+                    <h5>@Model.QaSP</h5>
+                </div>
+                <div class="col-sm text-center">
+                    <span>Done:</span>
+                    <h5>@Model.DoneSP</h5>
+                </div>
+            </div>
+        </div>
+
+    </div>

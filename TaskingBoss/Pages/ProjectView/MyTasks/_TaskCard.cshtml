@@ -25,7 +25,7 @@
             <span class="w-100 small">Story points: @Model.StoryPoints</span>
         </div>
 
-        <a asp-page="#" asp-route-taskId="@Model.TaskItemId" class="stretched-link"></a>
+        <a asp-page="/Tasks/Detail" asp-route-taskId="@Model.TaskItemId" asp-route-projectId="@Model.ProjectIdRoute" class="stretched-link"></a>
 
     </div>
 </div>

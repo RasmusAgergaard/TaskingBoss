@@ -1,4 +1,5 @@
 ﻿@page
+@using TaskingBoss.Core
 @model TaskingBoss.Pages.ProjectView.Sprint.IndexModel
 @{
     Layout = "_SprintLayout";
@@ -31,7 +32,33 @@
 
         @foreach (var item in Model.SprintTasks)
         {
-            <partial name="_OverviewCard" model="item"  />
+            <div class="card shadow-sm mb-2">
+                <div class="card-body p-2">
+
+                    <div>
+                        @if (item.Priority == TaskPriority.High)
+                        {
+                            <span class="badge badge-danger">High priority</span>
+                        }
+                        @if (item.Priority == TaskPriority.Low)
+                        {
+                            <span class="badge badge-secondary">Low priority</span>
+                        }
+
+                    </div>
+
+                    <div>
+                        <span class="w-100">@item.Title</span>
+                    </div>
+
+                    <div>
+                        <span class="w-100 small">Story points: @item.StoryPoints</span>
+                    </div>
+
+                    <a asp-page="/Tasks/Detail" asp-route-taskId="@item.TaskItemId" asp-route-projectId="@Model.Project.ProjectId" class="stretched-link"></a>
+
+                </div>
+            </div>
         }
 
     </div>
