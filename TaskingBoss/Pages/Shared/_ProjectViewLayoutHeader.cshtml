@@ -16,7 +16,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" asp-page="/ProjectView/Sprint/Index" asp-route-projectId="@Model.Project.ProjectId">Sprint overview</a>
+                        <a class="nav-link" asp-page="/ProjectView/Sprint/Index" asp-route-projectId="@Model.Project.ProjectId">Sprint Overview</a>
                     </li>
 
                     <li class="nav-item">
@@ -31,20 +31,26 @@
                         <a class="nav-link disabled" asp-page="/ProjectView/BossView/Index" asp-route-projectId="@Model.Project.ProjectId">Boss-View</a>
                     </li>
 
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown">
-                            @User.Identity.Name
-                        </a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" id="manage" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Manage Account</a>
-                            <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Logout" title="Logout">Logout</a>
-                        </div>
-                    </li>
-
                 </ul>
 
                 <form class="form-inline my-3 my-lg-0">
-                    <a class="btn btn-outline-success btn-sm" asp-page="/Tasks/Edit" asp-route-projectId="@Model.Project.ProjectId">Create Task</a>
+
+                    <a class="mr-3" asp-page="/Tasks/Edit" asp-route-projectId="@Model.Project.ProjectId">
+                        <img src="~/images/icons/plus.svg" alt="New" title="Create..." style="height:22px">
+                    </a>
+
+                    <a class="mr-3" asp-page="/Projects/List" asp-route-projectId="@Model.Project.ProjectId">
+                        <img src="~/images/icons/list.svg" alt="Projects" title="Projects" style="height:22px">
+                    </a>
+
+                    <a class="mr-3" asp-page="/Projects/Edit" asp-route-projectId="@Model.Project.ProjectId">
+                        <img src="~/images/icons/gear.svg" alt="Settings" title="Project settings" style="height:22px">
+                    </a>
+
+                    <a class="" id="manage" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
+                        <img src="~/images/icons/user.svg" alt="User" title="Manage user" style="height:22px">
+                    </a>
+
                 </form>
 
             </div>

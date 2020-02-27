@@ -1,28 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
-using TaskingBoss.Data;
+using TaskingBoss.Areas.Identity.Data;
 
 namespace TaskingBoss.Pages
 {
     public class IndexModel : PageModel
     {
-        private readonly ILogger<IndexModel> _logger;
+        private readonly SignInManager<ApplicationUser> _signInManager;
 
+        public bool IsSignedIn { get; set; }
 
-        public IndexModel(ILogger<IndexModel> logger, IProjectData projectData, ITaskData taskData)
+        public IndexModel(SignInManager<ApplicationUser> signInManager)
         {
-            _logger = logger;
-
+            _signInManager = signInManager;
+            IsSignedIn = false;
         }
 
-        public void OnGet(int projectId)
+        public IActionResult OnGet()
         {
+            if (_signInManager.IsSignedIn(User))
+            {
+                IsSignedIn = true;
+                return RedirectToPage("/Projects/List");
+            }
 
+            return Page();
         }
     }
 }

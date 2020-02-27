@@ -2,8 +2,8 @@
 @using TaskingBoss.Core
 @model TaskingBoss.Pages.ProjectView.Sprint.IndexModel
 @{
-    Layout = "_SprintLayout";
     ViewData["Title"] = "Sprint Overview";
+    Layout = "_SprintLayout";
 
     float percentDoneResult = ((float)Model.DoneSP / (float)Model.AllSP) * 100;
     int percentDoneShow = (int)percentDoneResult;
@@ -11,7 +11,7 @@
 
 <div class="w-100 text-center">
 
-    <h3>Sprint overview</h3>
+    <h3>@ViewData["Title"]</h3>
     <div class="progress mb-3" style="height: 18px;">
         <div class="progress-bar" role="progressbar" style="width: @percentDoneShow%;">Sprint @percentDoneShow% done</div>
     </div>

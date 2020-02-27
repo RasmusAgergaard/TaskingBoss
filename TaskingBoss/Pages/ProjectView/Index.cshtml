@@ -1,12 +1,13 @@
 ﻿@page
 @model TaskingBoss.Pages.ProjectView.IndexModel
 @{
+    ViewData["Title"] = Model.Project.Title;
     Layout = "_ProjectViewLayout";
 }
 
     <div class="w-100 text-center">
 
-        <h1>@Model.Project.Title</h1>
+        <h1>@ViewData["Title"]</h1>
         <p>Total Number of open tasks: @Model.NumberOfTasks</p>
 
     </div>
@@ -57,6 +58,16 @@
                     <h5>@Model.DoneSP</h5>
                 </div>
             </div>
+        </div>
+
+        <div class="w-100 rounded shadow-sm p-2 mt-3">
+            <h6>Users:</h6>
+
+            @foreach (var user in Model.Users)
+            {
+                <span class="badge badge-pill badge-dark">@user.Email</span>
+            }
+
         </div>
 
     </div>

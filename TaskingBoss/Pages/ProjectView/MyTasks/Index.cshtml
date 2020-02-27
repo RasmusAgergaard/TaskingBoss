@@ -1,12 +1,13 @@
 ﻿@page
 @model TaskingBoss.Pages.ProjectView.MyTasks.IndexModel
 @{
+    ViewData["Title"] = "My Tasks";
     Layout = "_ProjectViewLayout";
 }
 
 <div class="w-100 text-center">
 
-    <h3>My tasks</h3>
+    <h3>@ViewData["Title"]</h3>
     <hr />
 
 </div>

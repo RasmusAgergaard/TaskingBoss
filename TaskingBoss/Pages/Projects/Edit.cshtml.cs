@@ -57,12 +57,12 @@ namespace TaskingBoss.Pages.Projects
             {
                 var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
                 _projectData.New(Project, userId);
-                TempData["Message"] = "Project added!";
+                TempData["Message"] = "Project successfully created!";
             }
 
             _projectData.Commit();
-            return Page();
-            //return RedirectToPage("./Detail", new { taskId = Project.ProjectId });
+
+            return RedirectToPage("/Projects/List");
         }
     }
 }

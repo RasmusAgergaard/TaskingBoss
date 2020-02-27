@@ -1,21 +1,38 @@
 ﻿@page
 @model TaskingBoss.Pages.Projects.ListModel
 @{
+    ViewData["Title"] = "Projects";
 }
 
-<h1>Projects</h1>
+@if (Model.Message != null)
+{
+    <div class="col-12 m-0">
+        <div class="alert alert-success" role="alert">
+            @Model.Message
+        </div>
+    </div>
+}
+
+<div class="w-100 text-center">
+    <h3>@ViewData["Title"]</h3>
+    <hr />
+</div>
 
 @foreach (var project in Model.Projects)
 {
-    <p>
-        @project.Title
-        <br />
-        <a asp-page="/ProjectView/Index" asp-route-projectId="@project.ProjectId">Go to project</a>
-        <br />
-        <a asp-page="./Edit" asp-route-projectId="@project.ProjectId">Edit</a>
-    </p>
-
-    <hr />
+    <div class="col-sm-6 col-md-6 col-lg-4">
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">@project.Title</h5>
+                <h6 class="card-subtitle mb-2 text-muted">@project.Description</h6>
+                <p class="card-text">Users: </p>
+                <a asp-page="/ProjectView/Index" asp-route-projectId="@project.ProjectId" class="btn btn-outline-primary btn-sm">Go to Project</a>
+            </div>
+        </div>
+    </div>
 }
 
-<a class="btn btn-outline-success btn-sm" asp-page="/Projects/Edit">Create new project</a>
+
+
+
+

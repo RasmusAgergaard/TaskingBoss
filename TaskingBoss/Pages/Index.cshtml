@@ -1,10 +1,18 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Welcome";
+    Layout = "_FrontpageLayout";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="w-100" style="height:100px"></div>
+
+<div class="text-center m-4">
+    <img src="~/images/tb_logo.png" class="img-fluid" />
+    <br /><br />
+    <p>The project management application</p>
+
+    <a class="btn btn-outline-primary" id="login" asp-area="Identity" asp-page="/Account/Login">Log ind</a>
+    <span> or </span>
+    <a class="btn btn-outline-primary" asp-area="Identity" asp-page="/Account/Register">Create account</a>
 </div>

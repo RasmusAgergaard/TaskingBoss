@@ -24,6 +24,7 @@ namespace TaskingBoss
 
             services.AddScoped<IProjectData, SqlProjectData>();
             services.AddScoped<ITaskData, SqlTaskData>();
+            services.AddScoped<IUserData, SqlUserData>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

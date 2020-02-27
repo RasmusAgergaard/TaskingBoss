@@ -5,6 +5,16 @@
 }
 
 
+@if (Model.Message != null)
+{
+    <div class="col-12 m-0">
+        <div class="alert alert-success" role="alert">
+            @Model.Message
+        </div>
+    </div>
+}
+
+
 <div class="col-md-8 border border-secondary rounded m-2 p-3">
 
     <h3>@Model.Task.Title</h3>

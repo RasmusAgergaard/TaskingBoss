@@ -1,14 +1,13 @@
 ﻿@page
-@using TaskingBoss.Core
 @model TaskingBoss.Pages.ProjectView.Backlog.IndexModel
 @{
+    ViewData["Title"] = "Backlog";
     Layout = "_ProjectViewLayout";
 }
 
 <div class="w-100 text-center">
 
-    <h3>Backlog - @Model.BacklogTasks.Count tasks</h3>
-    <a class="btn btn-outline-success btn-sm" asp-page="/Tasks/Edit" asp-route-projectId="@Model.Project.ProjectId">Create new task</a>
+    <h3>@ViewData["Title"] <span class="small">(@Model.BacklogTasks.Count tasks)</span></h3>
     <hr />
 
 </div>

@@ -72,8 +72,8 @@ namespace TaskingBoss.Pages.Tasks
             }
 
             _taskData.Commit();
-            return RedirectToPage("/ProjectView/Index", new { projectId });
-            //return RedirectToPage("./Detail", new { taskId = Task.TaskItemId });
+
+            return RedirectToPage("/Tasks/Detail", new { taskId = Task.TaskItemId, projectId });
         }
     }
 }

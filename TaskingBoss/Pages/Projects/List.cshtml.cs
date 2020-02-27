@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Collections.Generic;
 using System.Security.Claims;
@@ -13,6 +14,8 @@ namespace TaskingBoss.Pages.Projects
         private readonly IProjectData _projectData;
         private readonly UserManager<ApplicationUser> _userManager;
 
+        [TempData]
+        public string Message { get; set; }
         public List<Project> Projects { get; set; }
         public string Id { get; set; }
 

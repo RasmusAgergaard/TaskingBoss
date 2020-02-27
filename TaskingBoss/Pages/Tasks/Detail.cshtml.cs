@@ -10,6 +10,8 @@ namespace TaskingBoss.Pages.Tasks
         private readonly ITaskData _taskData;
         private readonly IProjectData _projectData;
 
+        [TempData]
+        public string Message { get; set; }
         public TaskItem Task { get; set; }
         public Project Project { get; set; }
 

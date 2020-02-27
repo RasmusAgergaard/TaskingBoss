@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Collections.Generic;
 using System.Linq;
+using TaskingBoss.Areas.Identity.Data;
 using TaskingBoss.Core;
 using TaskingBoss.Data;
 
@@ -11,9 +12,11 @@ namespace TaskingBoss.Pages.ProjectView
     {
         private readonly IProjectData _projectData;
         private readonly ITaskData _taskData;
+        private readonly IUserData _userData;
 
         public Project Project { get; set; }
         public List<TaskItem> Tasks { get; set; }
+        public List<ApplicationUser> Users { get; set; }
 
         public int NumberOfTasks { get; set; }
         public int ProjectProgress { get; set; }
@@ -28,14 +31,17 @@ namespace TaskingBoss.Pages.ProjectView
         public int QaSP { get; set; }
         public int DoneSP { get; set; }
 
-        public IndexModel(IProjectData projectData, ITaskData taskData)
+        public IndexModel(IProjectData projectData, ITaskData taskData, IUserData userData)
         {
             _projectData = projectData;
             _taskData = taskData;
+            _userData = userData;
         }
 
         public IActionResult OnGet(int projectId)
         {
+            Users = _userData.GetUsersOnProject(projectId);
+
             Tasks = _taskData.GetTasks(projectId);
 
             foreach (var task in Tasks)
