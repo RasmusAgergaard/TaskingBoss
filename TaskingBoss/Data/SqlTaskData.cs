@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using TaskingBoss.Core;
+using TaskingBoss.Core.ViewModels;
 using TaskStatus = TaskingBoss.Core.TaskStatus;
 
 namespace TaskingBoss.Data

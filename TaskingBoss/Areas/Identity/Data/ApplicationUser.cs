@@ -16,6 +16,7 @@ namespace TaskingBoss.Areas.Identity.Data
         public string Abbreviation { get; set; }
 
         public ICollection<ApplicationUserProjects> ApplicationUserProjects { get; } = new List<ApplicationUserProjects>();
+        public ICollection<ApplicationUserTaskItems> ApplicationUserTaskItems { get; } = new List<ApplicationUserTaskItems>();
 
         public void SetAbbreviation()
         {

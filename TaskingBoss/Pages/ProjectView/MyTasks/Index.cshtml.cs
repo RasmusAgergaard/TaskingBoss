@@ -25,9 +25,9 @@ namespace TaskingBoss.Pages.ProjectView.MyTasks
         public void OnGet(int projectId)
         {
             Project = _projectData.GetById(projectId);
-            SprintTasks = _taskData.GetTasks(Core.TaskStatus.Sprint, projectId).ToList();
-            DoingTasks = _taskData.GetTasks(Core.TaskStatus.Doing, projectId).ToList();
-            BlockedTasks = _taskData.GetTasks(Core.TaskStatus.Blocked, projectId).ToList();
+            SprintTasks = _taskData.GetTasks(TaskStatus.Sprint, projectId).ToList();
+            DoingTasks = _taskData.GetTasks(TaskStatus.Doing, projectId).ToList();
+            BlockedTasks = _taskData.GetTasks(TaskStatus.Blocked, projectId).ToList();
         }
     }
 }

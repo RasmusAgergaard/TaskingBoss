@@ -1,30 +1,38 @@
-﻿@using TaskingBoss.Core
-@model TaskItem
+﻿@using TaskingBoss.Core.ViewModels
+@using TaskingBoss.Core
+@model TaskItemUsersViewModel
 
 <div class="col-sm-6 col-md-6 col-lg-3">
     <div class="card mb-4">
         <div class="card-body">
 
             <div>
-                @if (Model.Priority == TaskPriority.High)
+                @if (Model.Task.Priority == TaskPriority.High)
                 {
                     <span class="badge badge-danger">High priority</span>
                 }
-                @if (Model.Priority == TaskPriority.Low)
+                @if (Model.Task.Priority == TaskPriority.Low)
                 {
                     <span class="badge badge-secondary">Low priority</span>
                 }
             </div>
 
-            <div>
-                <span class="w-100">@Model.Title</span>
+            <div class="w-100">
+                <span>@Model.Task.Title</span>
+            </div>
+
+            <div class="w-100 mb-1">
+                <span class="small">Story points: @Model.Task.StoryPoints</span>
             </div>
 
             <div>
-                <span class="w-100 small">Story points: @Model.StoryPoints</span>
+                @foreach (var user in Model.Users)
+                {
+                    <partial name="_UserBubblePartialView" model="@user" />
+                }
             </div>
 
-            <a asp-page="/Tasks/Detail" asp-route-taskId="@Model.TaskItemId" asp-route-projectId="@Model.ProjectIdRoute" class="stretched-link"></a>
+            <a asp-page="/Tasks/Detail" asp-route-taskId="@Model.Task.TaskItemId" asp-route-projectId="@Model.Task.ProjectIdRoute" class="stretched-link"></a>
         </div>
     </div>
 </div>

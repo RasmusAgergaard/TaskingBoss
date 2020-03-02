@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace TaskingBoss.Core
@@ -28,5 +29,7 @@ namespace TaskingBoss.Core
         public bool HasDeadline { get; set; }
         public DateTime Deadline { get; set; }
         public int ProjectIdRoute { get; set; } //Only populated temporary to link to task edit
+
+        public ICollection<ApplicationUserTaskItems> ApplicationUserTaskItems { get; } = new List<ApplicationUserTaskItems>();
     }
 }

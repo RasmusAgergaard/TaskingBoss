@@ -1,13 +1,16 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.Collections.Generic;
 using TaskingBoss.Areas.Identity.Data;
 using TaskingBoss.Core;
 using TaskingBoss.Data;
 
 namespace TaskingBoss.Pages.Tasks
 {
-    public class DetailModel : PageModel
+    public class AddUserModel : PageModel
     {
         private readonly ITaskData _taskData;
         private readonly IProjectData _projectData;
@@ -19,8 +22,9 @@ namespace TaskingBoss.Pages.Tasks
         public Project Project { get; set; }
         public List<ApplicationUser> TaskUsers { get; set; }
         public List<ApplicationUser> ProjectUsers { get; set; }
+        public List<ApplicationUser> ProjectUsersShow { get; set; }
 
-        public DetailModel(ITaskData taskData, IProjectData projectData, IUserData userData)
+        public AddUserModel(ITaskData taskData, IProjectData projectData, IUserData userData)
         {
             _taskData = taskData;
             _projectData = projectData;
@@ -33,13 +37,27 @@ namespace TaskingBoss.Pages.Tasks
             Task = _taskData.GetById(taskId);
             TaskUsers = _userData.GetUsersOnTask(taskId);
             ProjectUsers = _userData.GetUsersOnProject(projectId);
-
-            if (Task == null)
-            {
-                return RedirectToPage("./NotFound");
-            }
+            ProjectUsersShow = ProjectUsers.Except(TaskUsers).ToList();
 
             return Page();
+        }
+
+        public IActionResult OnPost(int taskId, int projectId, string userId, bool add) 
+        {
+            if (add)
+            {
+                _userData.AddUserToTask(userId, taskId);
+                _userData.Commit();
+                TempData["Message"] = "User added!";
+            }
+            else
+            {
+                _userData.RemoveUserFromTask(userId, taskId);
+                _userData.Commit();
+                TempData["Message"] = "User removed!";
+            }
+
+            return RedirectToPage("/Tasks/AddUser", new { taskId, projectId });
         }
     }
 }

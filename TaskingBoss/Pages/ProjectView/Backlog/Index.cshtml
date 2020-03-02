@@ -7,12 +7,12 @@
 
 <div class="w-100 text-center">
 
-    <h3>@ViewData["Title"] <span class="small">(@Model.BacklogTasks.Count tasks)</span></h3>
+    <h3>@ViewData["Title"] <span class="small">(@Model.BacklogTasksWithUsers.Count tasks)</span></h3>
     <hr />
 
 </div>
 
-@foreach (var task in Model.BacklogTasks)
+@foreach (var task in Model.BacklogTasksWithUsers)
 {
     <partial name="_BacklogCard" model="task" />
 }

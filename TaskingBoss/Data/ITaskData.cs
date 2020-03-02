@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using TaskingBoss.Core;
+using TaskingBoss.Core.ViewModels;
 
 namespace TaskingBoss.Data
 {

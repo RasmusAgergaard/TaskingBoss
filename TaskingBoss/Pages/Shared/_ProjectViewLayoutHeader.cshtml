@@ -12,6 +12,10 @@
                 <ul class="navbar-nav mr-auto">
 
                     <li class="nav-item">
+                        <a class="nav-link" asp-page="/Projects/List" asp-route-projectId="@Model.Project.ProjectId">Projects</a>
+                    </li>
+
+                    <li class="nav-item">
                         <a class="nav-link" asp-page="/ProjectView/Backlog/Index" asp-route-projectId="@Model.Project.ProjectId">Backlog</a>
                     </li>
 
@@ -36,19 +40,15 @@
                 <form class="form-inline my-3 my-lg-0">
 
                     <a class="mr-3" asp-page="/Tasks/Edit" asp-route-projectId="@Model.Project.ProjectId">
-                        <img src="~/images/icons/plus.svg" alt="New" title="Create..." style="height:22px">
-                    </a>
-
-                    <a class="mr-3" asp-page="/Projects/List" asp-route-projectId="@Model.Project.ProjectId">
-                        <img src="~/images/icons/list.svg" alt="Projects" title="Projects" style="height:22px">
+                        <i class="gg-add"></i>
                     </a>
 
                     <a class="mr-3" asp-page="/Projects/Edit" asp-route-projectId="@Model.Project.ProjectId">
-                        <img src="~/images/icons/gear.svg" alt="Settings" title="Project settings" style="height:22px">
+                        <i class="gg-toolbox"></i>
                     </a>
 
                     <a class="" id="manage" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
-                        <img src="~/images/icons/user.svg" alt="User" title="Manage user" style="height:22px">
+                        <i class="gg-profile"></i>
                     </a>
 
                 </form>

@@ -16,11 +16,13 @@ namespace TaskingBoss.Data
         public DbSet<Project> Projects { get; set; }
         public DbSet<TaskItem> Tasks { get; set; }
         public DbSet<ApplicationUserProjects> ApplicationUserProjects { get; set; }
+        public DbSet<ApplicationUserTaskItems> ApplicationUserTaskItems { get; set; }
         public DbSet<ProjectTaskItems> ProjectTaskItems { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<ApplicationUserProjects>().HasKey(t => new { t.Id, t.ProjectId });
+            builder.Entity<ApplicationUserTaskItems>().HasKey(t => new { t.Id, t.TaskItemId });
             builder.Entity<ProjectTaskItems>().HasKey(t => new { t.ProjectId, t.TaskItemId });
 
             base.OnModelCreating(builder);

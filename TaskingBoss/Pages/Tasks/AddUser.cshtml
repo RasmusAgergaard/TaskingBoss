@@ -1,0 +1,72 @@
+﻿@page
+@model TaskingBoss.Pages.Tasks.AddUserModel
+@{
+    Layout = "_ProjectViewLayout";
+}
+
+@if (Model.Message != null)
+{
+    <div class="col-12 m-0">
+        <div class="alert alert-success" role="alert">
+            @Model.Message
+        </div>
+    </div>
+}
+
+<div class="col-md-8 border border-secondary rounded m-2 p-3">
+
+    <a class="btn btn-outline-primary btn-sm" asp-page="./Detail" asp-route-taskId="@Model.Task.TaskItemId" asp-route-projectId="@Model.Project.ProjectId">Back to task</a>
+
+    <h3>Manage users for task "@Model.Task.Title"</h3>
+
+    <hr />
+
+    @if (Model.TaskUsers.Count > 0)
+    {
+        <h5>Users on task:</h5>
+
+        @foreach (var user in Model.TaskUsers)
+        {
+            <form class="form-inline" method="post">
+                <div class="form-group mb-2">
+                    <label class="sr-only">@user.Name</label>
+                    <input type="text" readonly class="form-control-plaintext" value="@user.Name">
+                </div>
+
+                <button type="submit" class="btn btn-outline-danger btn-sm"
+                        asp-route-userId="@user.Id"
+                        asp-route-taskId="@Model.Task.TaskItemId"
+                        asp-route-projectId="@Model.Project.ProjectId"
+                        asp-route-add="false">
+                    Remove
+                </button>
+
+            </form>
+        }
+    }
+
+    @if (Model.ProjectUsersShow.Count > 0)
+    {
+        <h5>Users:</h5>
+
+        @foreach (var user in Model.ProjectUsersShow)
+        {
+            <form class="form-inline" method="post">
+                <div class="form-group mb-2">
+                    <label class="sr-only">@user.Name</label>
+                    <input type="text" readonly class="form-control-plaintext" value="@user.Name">
+                </div>
+
+                <button type="submit" class="btn btn-outline-success btn-sm"
+                        asp-route-userId="@user.Id"
+                        asp-route-taskId="@Model.Task.TaskItemId"
+                        asp-route-projectId="@Model.Project.ProjectId"
+                        asp-route-add="true">
+                    Add
+                </button>
+
+            </form>
+        }
+    }
+
+</div>
