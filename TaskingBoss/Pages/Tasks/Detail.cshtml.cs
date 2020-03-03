@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Collections.Generic;
+using System.Linq;
 using TaskingBoss.Areas.Identity.Data;
 using TaskingBoss.Core;
 using TaskingBoss.Data;
@@ -19,6 +20,7 @@ namespace TaskingBoss.Pages.Tasks
         public Project Project { get; set; }
         public List<ApplicationUser> TaskUsers { get; set; }
         public List<ApplicationUser> ProjectUsers { get; set; }
+        public List<string> Activity { get; set; }
 
         public DetailModel(ITaskData taskData, IProjectData projectData, IUserData userData)
         {
@@ -33,6 +35,8 @@ namespace TaskingBoss.Pages.Tasks
             Task = _taskData.GetById(taskId);
             TaskUsers = _userData.GetUsersOnTask(taskId);
             ProjectUsers = _userData.GetUsersOnProject(projectId);
+
+            Activity = Task.ActivityLog.Split(",").ToList();
 
             if (Task == null)
             {

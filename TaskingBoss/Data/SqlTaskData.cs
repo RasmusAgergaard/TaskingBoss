@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TaskingBoss.Core;
@@ -23,6 +24,12 @@ namespace TaskingBoss.Data
             _db.Tasks.Add(newTask);
             _db.ProjectTaskItems.Add(new ProjectTaskItems { ProjectId = projectId, TaskItem = newTask });
             return newTask;
+        }
+
+        public void AddActivity(TaskItem task, string activity)
+        {
+            task.ActivityLog = task.ActivityLog + activity + ",";
+            Update(task);
         }
 
         public int Commit()
@@ -244,6 +251,10 @@ namespace TaskingBoss.Data
 
         public TaskItem Update(TaskItem updatedTask)
         {
+            var dateTime = DateTime.Now.ToString("MM/dd/yyyy HH:mm");
+
+            updatedTask.ActivityLog = updatedTask.ActivityLog + dateTime + " - Task updated,";
+
             //Attach the updated item to the db, so it monitors the changes. Then tell ef that the states is modified. This updates the item in the db
             var entity = _db.Tasks.Attach(updatedTask);
             entity.State = EntityState.Modified;

@@ -12,6 +12,9 @@ namespace TaskingBoss.Core
             LastUpdatedDate = DateTime.Now;
             Priority = TaskPriority.Normal;
             HasDeadline = false;
+
+            var dateTime = DateTime.Now.ToString("MM/dd/yyyy HH:mm");
+            ActivityLog = dateTime + " - Task created,";
         }
 
         public int TaskItemId { get; set; }
