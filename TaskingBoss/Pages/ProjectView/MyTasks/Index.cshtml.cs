@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using TaskingBoss.Core;
+using TaskingBoss.Core.ViewModels;
 using TaskingBoss.Data;
 
 namespace TaskingBoss.Pages.ProjectView.MyTasks
@@ -12,9 +14,9 @@ namespace TaskingBoss.Pages.ProjectView.MyTasks
         private readonly IProjectData _projectData;
 
         public Project Project { get; set; }
-        public List<TaskItem> SprintTasks { get; set; }
-        public List<TaskItem> DoingTasks { get; set; }
-        public List<TaskItem> BlockedTasks { get; set; }
+        public List<TaskItemUsersViewModel> SprintTasks { get; set; }
+        public List<TaskItemUsersViewModel> DoingTasks { get; set; }
+        public List<TaskItemUsersViewModel> BlockedTasks { get; set; }
 
         public IndexModel(ITaskData taskData, IProjectData projectData)
         {
@@ -24,10 +26,12 @@ namespace TaskingBoss.Pages.ProjectView.MyTasks
 
         public void OnGet(int projectId)
         {
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
             Project = _projectData.GetById(projectId);
-            SprintTasks = _taskData.GetTasks(TaskStatus.Sprint, projectId).ToList();
-            DoingTasks = _taskData.GetTasks(TaskStatus.Doing, projectId).ToList();
-            BlockedTasks = _taskData.GetTasks(TaskStatus.Blocked, projectId).ToList();
+            SprintTasks = _taskData.GetTasks(TaskStatus.Sprint, projectId, userId).ToList();
+            DoingTasks = _taskData.GetTasks(TaskStatus.Doing, projectId, userId).ToList();
+            BlockedTasks = _taskData.GetTasks(TaskStatus.Blocked, projectId, userId).ToList();
         }
     }
 }

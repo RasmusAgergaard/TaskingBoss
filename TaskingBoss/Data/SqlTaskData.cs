@@ -10,10 +10,12 @@ namespace TaskingBoss.Data
     public class SqlTaskData : ITaskData
     {
         private readonly TaskingBossDbContext _db;
+        private readonly IUserData _userData;
 
-        public SqlTaskData(TaskingBossDbContext db)
+        public SqlTaskData(TaskingBossDbContext db, IUserData userData)
         {
             _db = db;
+            _userData = userData;
         }
 
         public TaskItem Add(TaskItem newTask, int projectId)
@@ -137,8 +139,9 @@ namespace TaskingBoss.Data
             return tasks;
         }
 
-        public IEnumerable<TaskItem> GetTasks(TaskStatus status, int projectId)
+        public IEnumerable<TaskItemUsersViewModel> GetTasks(TaskStatus status, int projectId)
         {
+            //All tasks in project
             var tasks = GetTasks(projectId);
             var foundTasks = new List<TaskItem>();
 
@@ -184,13 +187,59 @@ namespace TaskingBoss.Data
                     break;
             }
 
-            //Set projectId route
+            var taskViewModels = new List<TaskItemUsersViewModel>();
+
+            //Set projectId and add task to taskViewModel
             foreach (var task in foundTasks)
             {
                 task.ProjectIdRoute = projectId;
+                taskViewModels.Add(new TaskItemUsersViewModel() { Task = task});
             }
 
-            return foundTasks;
+            //Set task users
+            foreach (var item in taskViewModels)
+            {
+                item.Users = _userData.GetUsersOnTask(item.Task.TaskItemId);
+            }
+
+            return taskViewModels;
+        }
+
+        public IEnumerable<TaskItemUsersViewModel> GetTasks(TaskStatus status, int projectId, string userId)
+        {
+            var allTasksViewModel = GetTasks(status, projectId);
+            var allTasks = new List<TaskItem>();
+            
+            foreach (var item in allTasksViewModel)
+            {
+                allTasks.Add(item.Task);
+            }
+
+            var userTasks = new List<TaskItem>();
+            foreach (var item in _db.ApplicationUserTaskItems)
+            {
+                if (item.Id == userId)
+                {
+                    userTasks.Add(GetById(item.TaskItemId));
+                }
+            }
+
+            var sortedTasks = allTasks.Intersect(userTasks);
+
+            var sortedTasksViewModel = new List<TaskItemUsersViewModel>();
+
+            foreach (var item in sortedTasks)
+            {
+                sortedTasksViewModel.Add(new TaskItemUsersViewModel() { Task = item});
+            }
+
+            //Set task users
+            foreach (var item in sortedTasksViewModel)
+            {
+                item.Users = _userData.GetUsersOnTask(item.Task.TaskItemId);
+            }
+
+            return sortedTasksViewModel;
         }
 
         public TaskItem Update(TaskItem updatedTask)

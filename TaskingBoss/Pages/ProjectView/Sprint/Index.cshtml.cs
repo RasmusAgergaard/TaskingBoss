@@ -35,11 +35,6 @@ namespace TaskingBoss.Pages.ProjectView.Sprint
             _taskData = taskData;
             _projectData = projectData;
             _userData = userData;
-            SprintTasks = new List<TaskItemUsersViewModel>();
-            DoingTasks = new List<TaskItemUsersViewModel>();
-            BlockedTasks = new List<TaskItemUsersViewModel>();
-            QaTasks = new List<TaskItemUsersViewModel>();
-            DoneTasks = new List<TaskItemUsersViewModel>();
         }
 
         public void OnGet(int projectId)
@@ -47,50 +42,11 @@ namespace TaskingBoss.Pages.ProjectView.Sprint
             Project = _projectData.GetById(projectId);
             Tasks = _taskData.GetTasks(projectId);
 
-            var sprintTasks = _taskData.GetTasks(TaskStatus.Sprint, projectId).ToList();
-            foreach (var task in sprintTasks)
-            {
-                var taskWithUsers = new TaskItemUsersViewModel();
-                taskWithUsers.Task = task;
-                taskWithUsers.Users = _userData.GetUsersOnTask(task.TaskItemId);
-                SprintTasks.Add(taskWithUsers);
-            }
-
-            var doingTasks = _taskData.GetTasks(TaskStatus.Doing, projectId).ToList();
-            foreach (var task in doingTasks)
-            {
-                var taskWithUsers = new TaskItemUsersViewModel();
-                taskWithUsers.Task = task;
-                taskWithUsers.Users = _userData.GetUsersOnTask(task.TaskItemId);
-                DoingTasks.Add(taskWithUsers);
-            }
-
-            var blockedTasks = _taskData.GetTasks(TaskStatus.Blocked, projectId).ToList();
-            foreach (var task in blockedTasks)
-            {
-                var taskWithUsers = new TaskItemUsersViewModel();
-                taskWithUsers.Task = task;
-                taskWithUsers.Users = _userData.GetUsersOnTask(task.TaskItemId);
-                BlockedTasks.Add(taskWithUsers);
-            }
-
-            var qaTasks = _taskData.GetTasks(TaskStatus.QA, projectId).ToList();
-            foreach (var task in qaTasks)
-            {
-                var taskWithUsers = new TaskItemUsersViewModel();
-                taskWithUsers.Task = task;
-                taskWithUsers.Users = _userData.GetUsersOnTask(task.TaskItemId);
-                QaTasks.Add(taskWithUsers);
-            }
-
-            var doneTasks = _taskData.GetTasks(TaskStatus.Done, projectId).ToList();
-            foreach (var task in doneTasks)
-            {
-                var taskWithUsers = new TaskItemUsersViewModel();
-                taskWithUsers.Task = task;
-                taskWithUsers.Users = _userData.GetUsersOnTask(task.TaskItemId);
-                DoneTasks.Add(taskWithUsers);
-            }
+            SprintTasks = _taskData.GetTasks(TaskStatus.Sprint, projectId).ToList();
+            DoingTasks = _taskData.GetTasks(TaskStatus.Doing, projectId).ToList();
+            BlockedTasks = _taskData.GetTasks(TaskStatus.Blocked, projectId).ToList();
+            QaTasks = _taskData.GetTasks(TaskStatus.QA, projectId).ToList();
+            DoneTasks = _taskData.GetTasks(TaskStatus.Done, projectId).ToList();
 
             foreach (var task in Tasks)
             {

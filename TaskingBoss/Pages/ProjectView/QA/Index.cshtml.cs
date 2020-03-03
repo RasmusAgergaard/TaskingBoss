@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Collections.Generic;
 using System.Linq;
 using TaskingBoss.Core;
+using TaskingBoss.Core.ViewModels;
 using TaskingBoss.Data;
 using TaskStatus = TaskingBoss.Core.TaskStatus;
 
@@ -13,7 +14,7 @@ namespace TaskingBoss.Pages.ProjectView.QA
         private readonly IProjectData _projectData;
 
         public Project Project { get; set; }
-        public List<TaskItem> QaTasks { get; set; }
+        public List<TaskItemUsersViewModel> QaTasks { get; set; }
 
         public IndexModel(ITaskData taskData, IProjectData projectData)
         {
