@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TaskingBoss.Areas.Identity.Data;
@@ -21,12 +22,16 @@ namespace TaskingBoss.Pages.Tasks
         public List<ApplicationUser> TaskUsers { get; set; }
         public List<ApplicationUser> ProjectUsers { get; set; }
         public List<string> Activity { get; set; }
+        public List<string> StatusEnums { get; set; }
 
         public DetailModel(ITaskData taskData, IProjectData projectData, IUserData userData)
         {
             _taskData = taskData;
             _projectData = projectData;
             _userData = userData;
+
+            Activity = new List<string>();
+            StatusEnums = new List<string>();
         }
 
         public IActionResult OnGet(int taskId, int projectId)
@@ -36,7 +41,21 @@ namespace TaskingBoss.Pages.Tasks
             TaskUsers = _userData.GetUsersOnTask(taskId);
             ProjectUsers = _userData.GetUsersOnProject(projectId);
 
-            Activity = Task.ActivityLog.Split(",").ToList();
+            //Convert TaskStatus enum to a list of strings
+            foreach (TaskStatus status in Enum.GetValues(typeof(TaskStatus)))
+            {
+                //Exclude archived
+                if (status != TaskStatus.Archived)
+                {
+                    StatusEnums.Add(status.ToString());
+                } 
+            }
+
+            //Activity
+            if (!String.IsNullOrWhiteSpace(Task.ActivityLog))
+            {
+                Activity = Task.ActivityLog.Split(",").ToList();
+            }
 
             if (Task == null)
             {
@@ -44,6 +63,14 @@ namespace TaskingBoss.Pages.Tasks
             }
 
             return Page();
+        }
+
+        public IActionResult OnPost(int taskId, int projectId, string taskStatus)
+        {
+            _taskData.SetStatus(taskId, taskStatus);
+            _taskData.Commit();
+
+            return RedirectToPage("/Tasks/Detail", new { taskId, projectId });
         }
     }
 }

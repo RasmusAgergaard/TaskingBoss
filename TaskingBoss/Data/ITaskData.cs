@@ -15,6 +15,7 @@ namespace TaskingBoss.Data
         TaskItem Update(TaskItem updatedTask);
         TaskItem Add(TaskItem newTask, int projectId);
         TaskItem Delete(int id);
+        TaskItem SetStatus(int taskId, string status);
         void AddActivity(TaskItem task, string activity);
         int GetCountOfTasks(int projectId);
         int Commit();

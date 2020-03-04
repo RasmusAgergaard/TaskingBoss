@@ -14,7 +14,6 @@
     </div>
 }
 
-
 <div class="col-md-8 border border-secondary rounded m-2 p-3">
 
     <h3>@Model.Task.Title</h3>
@@ -71,12 +70,23 @@
 
     <div class="collapse" id="collapse">
         <div class="card card-body">
-            <a asp-page="./Edit" asp-route-taskId="@Model.Task.TaskItemId" class="btn btn-outline-primary btn-sm btn-block disabled">Backlog (Current)</a>
-            <a asp-page="./Edit" asp-route-taskId="@Model.Task.TaskItemId" class="btn btn-outline-primary btn-sm btn-block">Sprint</a>
-            <a asp-page="./Edit" asp-route-taskId="@Model.Task.TaskItemId" class="btn btn-outline-primary btn-sm btn-block">Doing</a>
-            <a asp-page="./Edit" asp-route-taskId="@Model.Task.TaskItemId" class="btn btn-outline-primary btn-sm btn-block">Blocked</a>
-            <a asp-page="./Edit" asp-route-taskId="@Model.Task.TaskItemId" class="btn btn-outline-primary btn-sm btn-block">QA</a>
-            <a asp-page="./Edit" asp-route-taskId="@Model.Task.TaskItemId" class="btn btn-outline-primary btn-sm btn-block">Done</a>
+
+            <form class="form-inline" method="post">
+
+                @foreach (var item in Model.StatusEnums)
+                {
+                    if (item == Model.Task.Status.ToString())
+                    {
+                        <button type="submit" class="btn btn-outline-primary btn-sm btn-block disabled">@item (Current)</button>
+                    }
+                    else
+                    {
+                        <button type="submit" class="btn btn-outline-primary btn-sm btn-block" asp-route-taskId="@Model.Task.TaskItemId" asp-route-projectId="@Model.Project.ProjectId" asp-route-taskStatus="@item">@item</button>
+                    }
+                }
+
+            </form>
+
         </div>
     </div>
 

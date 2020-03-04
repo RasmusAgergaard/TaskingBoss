@@ -249,6 +249,16 @@ namespace TaskingBoss.Data
             return sortedTasksViewModel;
         }
 
+        public TaskItem SetStatus(int taskId, string status)
+        {
+
+            var result = Enum.TryParse(status, out TaskStatus statusEnum);
+            var foundTask = _db.Tasks.Find(taskId);
+            foundTask.Status = statusEnum;
+            Update(foundTask);
+            return foundTask;
+        }
+
         public TaskItem Update(TaskItem updatedTask)
         {
             var dateTime = DateTime.Now.ToString("MM/dd/yyyy HH:mm");
