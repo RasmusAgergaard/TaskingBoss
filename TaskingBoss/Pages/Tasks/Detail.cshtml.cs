@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;
@@ -23,6 +24,7 @@ namespace TaskingBoss.Pages.Tasks
         public List<ApplicationUser> ProjectUsers { get; set; }
         public List<string> Activity { get; set; }
         public List<string> StatusEnums { get; set; }
+        public string PageUrl { get; set; }
 
         public DetailModel(ITaskData taskData, IProjectData projectData, IUserData userData)
         {
@@ -40,6 +42,7 @@ namespace TaskingBoss.Pages.Tasks
             Task = _taskData.GetById(taskId);
             TaskUsers = _userData.GetUsersOnTask(taskId);
             ProjectUsers = _userData.GetUsersOnProject(projectId);
+            PageUrl = Request.GetDisplayUrl();
 
             //Convert TaskStatus enum to a list of strings
             foreach (TaskStatus status in Enum.GetValues(typeof(TaskStatus)))
