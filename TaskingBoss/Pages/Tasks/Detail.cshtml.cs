@@ -68,10 +68,26 @@ namespace TaskingBoss.Pages.Tasks
             return Page();
         }
 
-        public IActionResult OnPost(int taskId, int projectId, string taskStatus)
+        public IActionResult OnPost(int taskId, int projectId, string taskStatus = null, bool taskCopy = false)
         {
-            _taskData.SetStatus(taskId, taskStatus);
-            _taskData.Commit();
+            if (taskStatus != null)
+            {
+                _taskData.SetStatus(taskId, taskStatus);
+                _taskData.Commit();
+            }
+
+            if (taskCopy)
+            {
+                var newTask = _taskData.GetById(taskId);
+                newTask.TaskItemId = default;
+                newTask.Title = "Copy of " + newTask.Title;
+
+                var addedTask = _taskData.Add(newTask, projectId);
+                _taskData.Commit();
+
+                taskId = addedTask.TaskItemId;
+                return RedirectToPage("/Tasks/Detail", new { taskId, projectId });
+            }
 
             return RedirectToPage("/Tasks/Detail", new { taskId, projectId });
         }

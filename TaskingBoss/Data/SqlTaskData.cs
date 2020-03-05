@@ -21,6 +21,9 @@ namespace TaskingBoss.Data
 
         public TaskItem Add(TaskItem newTask, int projectId)
         {
+            var dateTime = DateTime.Now.ToString("MM/dd/yyyy HH:mm");
+            newTask.ActivityLog = dateTime + " - Task created,";
+
             _db.Tasks.Add(newTask);
             _db.ProjectTaskItems.Add(new ProjectTaskItems { ProjectId = projectId, TaskItem = newTask });
             return newTask;

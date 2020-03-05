@@ -1,8 +1,6 @@
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Security.Claims;
-using TaskingBoss.Areas.Identity.Data;
 using TaskingBoss.Core;
 using TaskingBoss.Data;
 
@@ -11,15 +9,13 @@ namespace TaskingBoss.Pages.Projects
     public class EditModel : PageModel
     {
         private readonly IProjectData _projectData;
-        private readonly UserManager<ApplicationUser> _userManager;
 
         [BindProperty]
         public Project Project { get; set; }
 
-        public EditModel(IProjectData projectData, UserManager<ApplicationUser> userManager)
+        public EditModel(IProjectData projectData)
         {
             _projectData = projectData;
-            _userManager = userManager;
         }
 
         public IActionResult OnGet(int? projectId)

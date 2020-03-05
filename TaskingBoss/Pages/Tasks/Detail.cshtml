@@ -76,7 +76,7 @@
                 {
                     if (item == Model.Task.Status.ToString())
                     {
-                        <button type="submit" class="btn btn-outline-primary btn-sm btn-block disabled">@item (Current)</button>
+                        <button type="submit" class="btn btn-outline-primary btn-sm btn-block disabled" asp-route-taskId="@Model.Task.TaskItemId" asp-route-projectId="@Model.Project.ProjectId" asp-route-taskStatus="@item">@item (Current)</button>
                     }
                     else
                     {
@@ -93,8 +93,22 @@
 
     <a asp-page="./AddUser" asp-route-taskId="@Model.Task.TaskItemId" asp-route-projectId="@Model.Project.ProjectId" class="btn btn-outline-success btn-sm btn-block">Manage users</a>
     <a asp-page="./Edit" asp-route-taskId="@Model.Task.TaskItemId" asp-route-projectId="@Model.Project.ProjectId" class="btn btn-outline-secondary btn-sm btn-block">Edit</a>
-    <a asp-page="#" asp-route-taskId="@Model.Task.TaskItemId" class="btn btn-outline-secondary btn-sm btn-block disabled">Copy</a>
-    <a asp-page="#" asp-route-taskId="@Model.Task.TaskItemId" class="btn btn-outline-secondary btn-sm btn-block disabled">Archive</a>
+
+    <form class="form-inline" method="post">
+
+        <button type="submit" class="btn btn-outline-secondary btn-sm btn-block mt-2 mb-1" asp-route-taskId="@Model.Task.TaskItemId" asp-route-projectId="@Model.Project.ProjectId" asp-route-taskCopy="true">Copy</button>
+
+        @if (Model.Task.Status.ToString() == "Archived")
+        {
+            <button type="submit" class="btn btn-outline-secondary btn-sm btn-block my-2 disabled" asp-route-taskId="@Model.Task.TaskItemId" asp-route-projectId="@Model.Project.ProjectId" asp-route-taskStatus="Archived">Archive (Current)</button>
+        }
+        else
+        {
+            <button type="submit" class="btn btn-outline-secondary btn-sm btn-block my-2" asp-route-taskId="@Model.Task.TaskItemId" asp-route-projectId="@Model.Project.ProjectId" asp-route-taskStatus="Archived">Archive</button>
+        }
+
+    </form>
+
     <a asp-page="#" data-toggle="modal" data-target="#shareModal" class="btn btn-outline-secondary btn-sm btn-block">Share</a>
 
     <hr />

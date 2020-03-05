@@ -70,5 +70,28 @@ namespace TaskingBoss.Data
         {
             return _db.SaveChanges();
         }
+
+        public bool AddUserToProject(int projectId, string email)
+        {
+            ApplicationUser user = null;
+
+            foreach (var item in _db.Users)
+            {
+                if (item.Email == email)
+                {
+                    user = item;
+                }
+            }
+
+            
+            if (user == null)
+            {
+                return false;
+            }
+
+            _db.ApplicationUserProjects.Add(new ApplicationUserProjects { Id = user.Id, ProjectId = projectId });
+
+            return true;
+        }
     }
 }

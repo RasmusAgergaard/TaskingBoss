@@ -69,6 +69,10 @@
                 <partial name="_UserBubblePartialView" model="@user" />
             }
 
+            <a asp-page="/Projects/ManageUsers" asp-route-projectId="@Model.Project.ProjectId">
+                <partial name="_UserBubbleEmptyPartialView" />
+            </a>
+
         </div>
 
     </div>

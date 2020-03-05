@@ -10,6 +10,7 @@ namespace TaskingBoss.Data
         List<ApplicationUser> GetUsersOnTask(int taskId);
         void AddUserToTask(string userId, int taskId);
         void RemoveUserFromTask(string userId, int taskId);
+        bool AddUserToProject(int projectId, string email);
         int Commit();
     }
 }
