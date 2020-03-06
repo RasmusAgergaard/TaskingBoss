@@ -5,6 +5,14 @@
     Layout = "_ProjectViewLayout";
 }
 
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb px-3 py-2">
+        <li class="breadcrumb-item"><a asp-page="/Projects/List">Projects</a></li>
+        <li class="breadcrumb-item"><a asp-page="/ProjectView/Index" asp-route-projectId="@Model.Project.ProjectId">This project</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Backlog</li>
+    </ol>
+</nav>
+
 <div class="w-100 text-center">
 
     <h3>@ViewData["Title"] <span class="small">(@Model.BacklogTasksWithUsers.Count tasks)</span></h3>

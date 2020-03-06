@@ -1,59 +1,113 @@
 ﻿<header>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-        <div class="container">
 
-            <a class="navbar-brand" asp-page="/ProjectView/Index" asp-route-projectId="@Model.Project.ProjectId">@Model.Project.Title</a>
-           
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark main-nav">
+        <div class="container">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-
+            <div class="collapse navbar-collapse w-100">
+                <ul class="nav navbar-nav w-100">
                     <li class="nav-item">
-                        <a class="nav-link" asp-page="/Projects/List">Projects</a>
+                        <a class="nav-link" asp-page="/Projects/List">Projects </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="manage" asp-area="Identity" asp-page="/Account/Manage/Index">User</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-page="/Tasks/Edit" asp-route-projectId="@Model.Project.ProjectId">Add</a>
 
+                    </li>
+                </ul>
+            </div>
+
+            <a class="navbar-brand order-first order-md-0 mx-0" href="#">
+                <img src="~/images/tb_logo_white.png" style="width: 100px; height:auto;" />
+            </a>
+
+            <div class="collapse navbar-collapse w-100">
+                <ul class="nav navbar-nav ml-auto">
                     <li class="nav-item">
                         <a class="nav-link" asp-page="/ProjectView/Backlog/Index" asp-route-projectId="@Model.Project.ProjectId">Backlog</a>
                     </li>
-
                     <li class="nav-item">
-                        <a class="nav-link" asp-page="/ProjectView/Sprint/Index" asp-route-projectId="@Model.Project.ProjectId">Sprint Overview</a>
+                        <a class="nav-link" asp-page="/ProjectView/Sprint/Index" asp-route-projectId="@Model.Project.ProjectId">Sprint</a>
                     </li>
-
                     <li class="nav-item">
                         <a class="nav-link" asp-page="/ProjectView/MyTasks/Index" asp-route-projectId="@Model.Project.ProjectId">My Tasks</a>
                     </li>
-
                     <li class="nav-item">
                         <a class="nav-link" asp-page="/ProjectView/QA/Index" asp-route-projectId="@Model.Project.ProjectId">QA</a>
                     </li>
-
                     <li class="nav-item">
-                        <a class="nav-link disabled" asp-page="/ProjectView/BossView/Index" asp-route-projectId="@Model.Project.ProjectId">Boss-View</a>
+                        <a class="nav-link" asp-page="/ProjectView/BossView/Index" asp-route-projectId="@Model.Project.ProjectId">Boss</a>
                     </li>
-
+                    <li class="nav-item">
+                        <a class="nav-link" asp-page="/Projects/Edit" asp-route-projectId="@Model.Project.ProjectId">Settings</a>
+                    </li>
                 </ul>
-
-                <form class="form-inline my-3 my-lg-0">
-
-                    <a class="mr-3" asp-page="/Tasks/Edit" asp-route-projectId="@Model.Project.ProjectId">
-                        <i class="gg-add"></i>
-                    </a>
-
-                    <a class="mr-3" asp-page="/Projects/Edit" asp-route-projectId="@Model.Project.ProjectId">
-                        <i class="gg-toolbox"></i>
-                    </a>
-
-                    <a class="" id="manage" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
-                        <i class="gg-profile"></i>
-                    </a>
-
-                </form>
-
             </div>
         </div>
     </nav>
+
+
+
+
+
+    @*<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+
+                <a class="navbar-brand" asp-page="/ProjectView/Index" asp-route-projectId="@Model.Project.ProjectId">@Model.Project.Title</a>
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+
+                        <li class="nav-item">
+                            <a class="nav-link" asp-page="/Projects/List">Projects</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" asp-page="/ProjectView/Backlog/Index" asp-route-projectId="@Model.Project.ProjectId">Backlog</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" asp-page="/ProjectView/Sprint/Index" asp-route-projectId="@Model.Project.ProjectId">Sprint Overview</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" asp-page="/ProjectView/MyTasks/Index" asp-route-projectId="@Model.Project.ProjectId">My Tasks</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" asp-page="/ProjectView/QA/Index" asp-route-projectId="@Model.Project.ProjectId">QA</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link disabled" asp-page="/ProjectView/BossView/Index" asp-route-projectId="@Model.Project.ProjectId">Boss-View</a>
+                        </li>
+
+                    </ul>
+
+                    <form class="form-inline my-3 my-lg-0">
+
+                        <a class="mr-3" asp-page="/Tasks/Edit" asp-route-projectId="@Model.Project.ProjectId">
+                            <i class="gg-add"></i>
+                        </a>
+
+                        <a class="mr-3" asp-page="/Projects/Edit" asp-route-projectId="@Model.Project.ProjectId">
+                            <i class="gg-toolbox"></i>
+                        </a>
+
+                        <a class="" id="manage" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
+                            <i class="gg-profile"></i>
+                        </a>
+
+                    </form>
+
+                </div>
+            </div>
+        </nav>*@
 </header>
