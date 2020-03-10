@@ -1,0 +1,47 @@
+﻿@page
+@model TaskingBoss.ClientTasksModel
+@{
+    ViewData["Title"] = "Client Tasks";
+}
+
+<h1>Client Tasks</h1>
+
+<div class="w-100">
+    <table class="table" id="tasks"></table>
+</div>
+
+
+
+@section Scripts{
+
+    <!-- Datatables files -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.css" />
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js"></script>
+
+    <script>
+
+        $(function () {
+
+            var statuses = ["Backlog", "Sprint", "Doing", "Blocked", "QA", "Done", "Archived"]
+
+            $.ajax("/api/taskitem",
+                { method: "get" })
+                .then(function (response) {
+                    $("#tasks").dataTable({
+                        data: response,
+                        columns: [
+                            { "data": "taskItemId" },
+                            { "data": "title" },
+                            {
+                                "data": "status", "render": function (data) {
+                                    return statuses[data];
+                                }
+                            }
+                        ]
+                    })
+                });
+        });
+
+    </script>
+
+}

@@ -20,6 +20,7 @@ namespace TaskingBoss
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+            services.AddControllers();
             services.AddMvc();
 
             services.AddScoped<IProjectData, SqlProjectData>();
